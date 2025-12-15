@@ -239,23 +239,11 @@ with regulator $R_k(p) = Z_k (k^2 - p^2) \theta(k^2 - p^2)$ adapted to the non-f
 
 We truncate $\Gamma_k$ to the ansatz (1.1–1.4) with running couplings $\lambda_k, \gamma_k, \mu_k$. Projecting the flow (1.12) onto the three operators yields the exact one-loop system, with canonical dimensions as rigorously derived in Appendix B.1.1:
 
-$$
-\begin{aligned}
-\beta_\lambda \;=\; \partial_t \tilde\lambda
-&= -2 \tilde\lambda
-+ \frac{9}{8\pi^2} \tilde\lambda^2
-&& \text{(4-vertex bubble)} \\[4pt]
-\beta_\gamma \;=\; \partial_t \tilde\gamma
-&= 0 \cdot \tilde\gamma
-+ \frac{3}{4\pi^2} \tilde\lambda \tilde\gamma
-&& \text{(kernel stretching)} \\[4pt]
-\beta_\mu   \;=\; \partial_t \tilde\mu
-&= 2 \tilde\mu
-+ \frac{1}{2\pi^2} \tilde\lambda \tilde\mu
-&& \text{(holographic measure)}
-\end{aligned}
-\tag{1.13}
-$$
+$$\beta_\lambda = \partial_t \tilde\lambda = -2 \tilde\lambda + \frac{9}{8\pi^2} \tilde\lambda^2 \qquad \text{(4-vertex bubble)} \tag{1.13a}$$
+
+$$\beta_\gamma = \partial_t \tilde\gamma = 0 \cdot \tilde\gamma + \frac{3}{4\pi^2} \tilde\lambda \tilde\gamma \qquad \text{(kernel stretching)} \tag{1.13b}$$
+
+$$\beta_\mu = \partial_t \tilde\mu = 2 \tilde\mu + \frac{1}{2\pi^2} \tilde\lambda \tilde\mu \qquad \text{(holographic measure)} \tag{1.13c}$$
 
 #### 1.2.3 The Unique Non-Gaussian Infrared Fixed Point
 
@@ -271,15 +259,7 @@ $$
 
 From Theorem 1.1 we have:
 
-$$
-\begin{aligned}
-C_H &= \frac{\beta_\lambda}{\beta_\gamma}\Big|_{*}
-   = \frac{\frac{9}{8\pi^2} \tilde\lambda_{*}^2}
-         {\frac{3}{4\pi^2} \tilde\lambda_* \tilde\gamma_*}
-   = \frac{3 \tilde\lambda_*}{2 \tilde\gamma_*}
-\tag{1.15}
-\end{aligned}
-$$
+$$C_H = \frac{\beta_\lambda}{\beta_\gamma}\Big|_{*} = \frac{\frac{9}{8\pi^2} \tilde\lambda_{*}^2}{\frac{3}{4\pi^2} \tilde\lambda_* \tilde\gamma_*} = \frac{3 \tilde\lambda_*}{2 \tilde\gamma_*} \tag{1.15}$$
 
 Inserting the exact fixed-point values (1.14):
 
@@ -810,15 +790,7 @@ At the Cosmic Fixed Point, the three stable fermionic Vortex Wave Patterns are c
 
 The HarmonyOptimizer, solving the fixed-point equations for the defect sector, yields the exact spectrum with typical theoretical uncertainties of 1-5% for these non-perturbative semi-analytical values:
 
-$$
-\boxed{
-\begin{aligned}
-\mathcal{K}_1 &= 1.000 \pm 0.001 \\
-\mathcal{K}_2 &= 206.77 \pm 0.02 \\
-\mathcal{K}_3 &= 3477.15 \pm 0.35
-\end{aligned}}
-\tag{3.3}
-$$
+$$\boxed{\mathcal{K}_1 = 1.000 \pm 0.001, \quad \mathcal{K}_2 = 206.77 \pm 0.02, \quad \mathcal{K}_3 = 3477.15 \pm 0.35} \tag{3.3}$$
 
 These numbers are **not fitted** — they are the three specific values that emerge as unique, stable minima of the analytically derived fixed-point effective potential for fermionic defects under the holographic measure constraint, proven via Morse theory and certified global search by HarmonyOptimizer. Their rigorous analytical derivation, showing them as solutions to transcendental equations, is detailed in **Appendix E.1**. While they classify "topological defects," their numerical values are **dynamical solutions** to transcendental equations, not strict topological invariants.
 The derivation involves solving the Euler-Lagrange equations for the VWP configurations in the background of the cGFT condensate. The interaction kernel (Eq. 1.3) and holographic measure term (Eq. 1.4) generate effective potentials that, when analyzed using Morse theory, reveal a unique set of three stable minima. Each minimum corresponds to a distinct topological class of VWP, and its effective "depth" or "robustness" translates into the $\mathcal{K}_f$ values. These are fundamentally eigenvalues of an operator that quantifies the topological winding of the defect around the emergent cycles of the spacetime. The **HarmonyOptimizer's adaptive mesh refinement in the VWP solution space and higher-order variational calculations** (detailed in Appendix E.1) have pushed the theoretical uncertainties for $\mathcal{K}_f$ values to sub-percent levels, particularly for the lighter generations, ensuring robust agreement with experimentally precise fermion masses.
