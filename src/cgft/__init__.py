@@ -23,7 +23,7 @@ Dependencies:
     - src.primitives (Layer 0)
 
 Authors: IRH Computational Framework Team
-Last Updated: 2026-Q2 (synchronized with IRH21.md v21.0)
+Last Updated: December 2024 (synchronized with IRH21.md v21.0)
 """
 
 __version__ = "21.0.0"
@@ -40,6 +40,15 @@ from .actions import (
     MU_STAR,
 )
 
+# Import from fields module (§1.1.1)
+from .fields import (
+    QuaternionicField,
+    create_field,
+    field_conjugate,
+    apply_gauge_transform,
+    verify_gauge_invariance,
+)
+
 __all__ = [
     # actions exports (Eqs. 1.1-1.4)
     'compute_kinetic_action',
@@ -50,10 +59,12 @@ __all__ = [
     'GAMMA_STAR',
     'MU_STAR',
     
-    # fields exports (placeholder)
+    # fields exports (§1.1.1)
     'QuaternionicField',
     'create_field',
     'field_conjugate',
+    'apply_gauge_transform',
+    'verify_gauge_invariance',
     
     # operators exports (placeholder)
     'laplace_beltrami_SU2',
@@ -62,8 +73,4 @@ __all__ = [
     # interactions exports (placeholder)
     'interaction_kernel',
     'QNCD_weighted_kernel',
-    
-    # symmetries exports (placeholder)
-    'gauge_transform',
-    'verify_gauge_invariance',
 ]
