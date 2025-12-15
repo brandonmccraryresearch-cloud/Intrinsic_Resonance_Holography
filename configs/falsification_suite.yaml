@@ -7,14 +7,14 @@ predictions:
   # Fine-structure constant (§3.2, Eq. 3.4-3.5)
   alpha_inverse:
     target_value: 137.035999084
-    target_uncertainty: 0.000000001
-    theoretical_uncertainty: 0.000000001
+    target_uncertainty: 1.0e-9
+    theoretical_uncertainty: 1.0e-9
     priority: "critical"
   
   # Universal exponent (Eq. 1.16)
   C_H:
     target_value: 0.045935703598
-    theoretical_uncertainty: 0.000000000001
+    theoretical_uncertainty: 1.0e-12
     priority: "critical"
   
   # Dark energy equation of state (Eq. 2.21-2.23)

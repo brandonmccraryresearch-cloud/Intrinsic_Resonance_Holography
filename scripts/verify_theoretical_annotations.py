@@ -21,15 +21,19 @@ import os
 import re
 import sys
 from pathlib import Path
+from typing import List
+
+# Configuration constants
+MIN_INIT_FILE_LENGTH = 50  # Minimum content length for __init__.py to check
 
 
-def find_python_files(root_dir: str) -> list[Path]:
+def find_python_files(root_dir: str) -> List[Path]:
     """Find all Python files in the source directory."""
     src_path = Path(root_dir) / "src"
     return list(src_path.rglob("*.py"))
 
 
-def check_module_header(filepath: Path) -> list[str]:
+def check_module_header(filepath: Path) -> List[str]:
     """Check if module has proper theoretical foundation citation."""
     issues = []
     
@@ -37,7 +41,7 @@ def check_module_header(filepath: Path) -> list[str]:
         content = f.read()
     
     # Skip empty __init__.py files
-    if filepath.name == "__init__.py" and len(content.strip()) < 50:
+    if filepath.name == "__init__.py" and len(content.strip()) < MIN_INIT_FILE_LENGTH:
         return issues
     
     # Check for THEORETICAL FOUNDATION in module docstring
@@ -51,7 +55,7 @@ def check_module_header(filepath: Path) -> list[str]:
     return issues
 
 
-def check_equation_labels(filepath: Path) -> list[str]:
+def check_equation_labels(filepath: Path) -> List[str]:
     """Check that equation references are properly formatted."""
     issues = []
     
@@ -82,7 +86,7 @@ def check_equation_labels(filepath: Path) -> list[str]:
     return issues
 
 
-def check_section_references(filepath: Path) -> list[str]:
+def check_section_references(filepath: Path) -> List[str]:
     """Check that section references are properly formatted."""
     issues = []
     

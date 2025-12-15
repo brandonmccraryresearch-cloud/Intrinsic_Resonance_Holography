@@ -28,7 +28,7 @@
   "derived_quantities": {
     "C_H": {
       "value": 0.045935703598,
-      "formula": "3 * lambda_star / (2 * gamma_star)",
+      "formula": "3 * λ̃* / (2 * γ̃*)",
       "uncertainty": 1e-12,
       "description": "Universal critical exponent",
       "reference": "Eq. 1.16"
