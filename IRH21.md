@@ -1,5 +1,3 @@
-.
-
 ---
 
 # Intrinsic Resonance Holography: The Unified Theory of Emergent Reality (v21.0)
