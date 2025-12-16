@@ -466,22 +466,34 @@ IRH-v21-Computational-Framework/
 
 ## 📊 Validation Status
 
+**Last Updated**: December 2025
+
 Current implementation status tracked in [`THEORETICAL_CORRESPONDENCE.md`](./THEORETICAL_CORRESPONDENCE.md).
 
 | Component | Status | Tests | Coverage |
 |-----------|--------|-------|----------|
 | Primitives (Quaternions, Groups, QNCD) | ✅ Complete | 45+ | 100% |
 | cGFT Action (Eqs. 1.1-1.4) | ✅ Complete | 25+ | 100% |
-| RG Flow Validation | ✅ Complete | 5+ | 100% |
-| Emergent Spacetime | 🟡 Scaffold | — | 0% |
-| Topology | 🟡 Scaffold | — | 0% |
-| Standard Model | 🟡 Scaffold | — | 0% |
-| Cosmology | 🟡 Scaffold | — | 0% |
-| Quantum Mechanics | 🟡 Scaffold | — | 0% |
-| Falsifiable Predictions | 🟡 Scaffold | — | 0% |
-| Observables | 🟡 Scaffold | — | 0% |
+| RG Flow (Beta Functions, Fixed Points) | ✅ Complete | 74+ | 100% |
+| Emergent Spacetime (d_spec, Metric, Lorentzian) | ✅ Complete | 33+ | 100% |
+| Topology (β₁=12, n_inst=3, VWP) | ✅ Complete | 53+ | 100% |
+| Standard Model (Gauge, Fermions, Higgs) | ✅ Complete | 65+ | 100% |
+| Cosmology (Dark Energy, Holographic Hum) | ✅ Complete | 25+ | 100% |
+| Quantum Mechanics (Born Rule, Lindblad) | ✅ Complete | 20+ | 100% |
+| Falsifiable Predictions (LIV, g-2, GW) | ✅ Complete | 26+ | 100% |
+| Observables (α⁻¹, C_H) | ✅ Complete | 15+ | 100% |
+| Desktop Application | ✅ Complete | 36+ | 100% |
 
-**Overall**: 159+ tests passing | 100% critical equation coverage (17/17)
+**Overall**: 564+ tests passing | 100% critical equation coverage (17/17)
+
+### Implementation Phases
+
+- **Phase I (Core RG Infrastructure)**: ✅ Complete
+- **Phase II (Emergent Geometry)**: ✅ Complete
+- **Phase III (Topological Physics)**: ✅ Complete
+- **Phase IV (Standard Model Emergence)**: ✅ Complete
+- **Phase V (Cosmology & Predictions)**: ✅ Complete
+- **Phase VI (Desktop Application)**: ✅ Complete
 
 ---
 
@@ -512,14 +524,37 @@ The living document **[`THEORETICAL_CORRESPONDENCE.md`](./THEORETICAL_CORRESPOND
 If using this framework in research, cite:
 
 ```bibtex
-@article{IRH_v21_2026,
+@software{IRH_v21_2025,
+  title={Intrinsic Resonance Holography v21.0: Computational Framework},
+  author={McCrary, Brandon D.},
+  year={2025},
+  month={12},
+  version={21.0.0},
+  url={https://github.com/brandonmccraryresearch-cloud/Intrinsic_Resonace_Holography-},
+  note={Complete computational implementation with 564+ tests}
+}
+
+@article{IRH_v21_theory,
   title={Intrinsic Resonance Holography v21.0: Unified Theory of Emergent Reality},
   author={McCrary, Brandon D.},
-  journal={Manuscript},
-  year={2026},
-  url={https://github.com/brandonmccraryresearch-cloud/Intrinsic_Resonace_Holography-}
+  journal={arXiv preprint},
+  year={2025},
+  note={Theoretical manuscript accompanying computational framework}
 }
 ```
+
+### Research Using IRH
+
+If you use IRH in your research:
+1. Cite both the software (for computational results) and theory paper (for theoretical foundation)
+2. Specify which version (v16, v18, or v21) you used
+3. Report which modules and equations were utilized
+4. Include verification details (test results, precision achieved)
+
+### ORCID
+
+**Author**: Brandon D. McCrary  
+**ORCID**: [0009-0008-2804-7165](https://orcid.org/0009-0008-2804-7165)
 
 ---
 

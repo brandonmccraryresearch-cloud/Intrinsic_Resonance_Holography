@@ -4,7 +4,7 @@
 
 **Version**: 21.0.0  
 **Document Type**: Exhaustive Technical Reference  
-**Last Updated**: December 2024  
+**Last Updated**: December 2025  
 **Canonical Theory**: IRH21.md v21.0
 
 ---
@@ -928,14 +928,14 @@ python scripts/run_full_validation_suite.py
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 21.0.0 | Dec 2024 | Initial complete implementation: primitives, cgft actions, RG validation |
-| 21.0.1 | Dec 2024 | Phase I-VI: Cross-validation, documentation infrastructure |
+| 21.0.0 | Dec 2025 | Initial complete implementation: primitives, cgft actions, RG validation |
+| 21.0.1 | Dec 2025 | Phase I-VI: Cross-validation, documentation infrastructure |
 
 ---
 
 *This document is maintained alongside the codebase. For the latest version, see `docs/TECHNICAL_REFERENCE.md` in the repository.*
 
 **Document Metadata**:
-- **Generated**: December 2024
+- **Generated**: December 2025
 - **Canonical Theory**: IRH21.md v21.0
 - **Maintainer**: IRH Computational Framework Team
