@@ -796,6 +796,15 @@ Every contribution to the IRH codebase must satisfy:
 | `src/observables/alpha_inverse.py` | Fine-structure constant | Eq. 3.4-3.5 | Tests included |
 | `src/observables/universal_exponent.py` | Universal exponent C_H | Eq. 1.16 | Tests included |
 
+### Phase II: COMPLETE ✅ (Emergent Geometry)
+
+| Module | Implementation | Equations | Tests |
+|--------|---------------|-----------|-------|
+| `src/emergent_spacetime/spectral_dimension.py` | d_spec(k) flow | Eq. 2.8-2.9, Thm 2.1 | 8+ tests |
+| `src/emergent_spacetime/metric_tensor.py` | g_μν(x) from condensate | Eq. 2.10 | 5+ tests |
+| `src/emergent_spacetime/lorentzian_signature.py` | ℤ₂ breaking | Thm H.1 | 8+ tests |
+| `src/emergent_spacetime/einstein_equations.py` | Einstein-Hilbert | Thm C.3 | 8+ tests |
+
 ### Equation Coverage: 100% (17/17 critical equations)
 
 - **Section 1 (Foundation)**: 8/8 ✓
@@ -806,9 +815,9 @@ Every contribution to the IRH codebase must satisfy:
   - Eq. 1.16: Universal exponent C_H
 
 - **Section 2 (Spacetime)**: 6/6 ✓
-  - Eqs. 2.8-2.9: Spectral dimension flow
-  - Eq. 2.10: Emergent metric
-  - Eqs. 2.17, 2.21: Dark energy
+  - Eqs. 2.8-2.9: Spectral dimension flow ✅ IMPLEMENTED
+  - Eq. 2.10: Emergent metric ✅ IMPLEMENTED
+  - Eqs. 2.17, 2.21: Dark energy (cosmological constant)
   - Eq. 2.24: LIV parameter
 
 - **Section 3 (Standard Model)**: 3/3 ✓
@@ -836,13 +845,37 @@ ch = compute_C_H()
 print(f"C_H = {ch.C_H}")  # 0.045935703598
 ```
 
-### Phase II: Emergent Geometry (NEXT)
+### Phase II Quick Verification
 
-Focus areas for Phase II:
-1. **Spectral dimension**: `src/emergent_spacetime/spectral_dimension.py` (Eq. 2.8-2.9)
-2. **Metric tensor**: `src/emergent_spacetime/metric_tensor.py` (Eq. 2.10)
-3. **Lorentzian signature**: `src/emergent_spacetime/lorentzian_signature.py`
-4. **Einstein equations**: `src/emergent_spacetime/einstein_equations.py`
+```python
+# Test spectral dimension (Theorem 2.1)
+from src.emergent_spacetime import verify_theorem_2_1, compute_spectral_dimension
+
+thm_2_1 = verify_theorem_2_1()
+print(f"Theorem 2.1 verified: {thm_2_1['is_verified']}")  # True
+print(f"d_spec(IR) = {thm_2_1['d_spec_ir']}")  # 4.0
+
+# Test Lorentzian signature (Theorem H.1)
+from src.emergent_spacetime import verify_theorem_h1, minkowski_metric
+
+thm_h1 = verify_theorem_h1()
+print(f"Theorem H.1 verified: {thm_h1['is_verified']}")  # True
+print(f"Signature: {thm_h1['ir_signature']}")  # (-1, 1, 1, 1)
+
+# Test Einstein equations (Theorem C.3)
+from src.emergent_spacetime import verify_theorem_c3
+
+thm_c3 = verify_theorem_c3()
+print(f"Theorem C.3 verified: {thm_c3['is_verified']}")  # True
+```
+
+### Phase III: Topological Physics (NEXT)
+
+Focus areas for Phase III:
+1. **Betti numbers**: `src/topology/betti_numbers.py` - β₁ = 12 (Appendix D.1)
+2. **Instanton number**: `src/topology/instanton_number.py` - n_inst = 3 (Appendix D.2)
+3. **Vortex Wave Patterns**: `src/topology/vortex_wave_patterns.py` - Fermion defects
+4. **Homology**: `src/topology/homology.py` - Persistent homology computations
 
 See `docs/CONTINUATION_GUIDE.md` for detailed implementation specifications.
 
@@ -855,7 +888,10 @@ export PYTHONPATH=$PWD
 # Run RG flow tests (74+ tests)
 python -m pytest tests/unit/test_rg_flow/ -v
 
+# Run emergent spacetime tests (33+ tests)
+python -m pytest tests/unit/test_emergent_spacetime/ -v
+
 # Test core functionality
 python -c "from src.rg_flow import find_fixed_point; print(find_fixed_point())"
-python -c "from src.observables import compute_fine_structure_constant; print(compute_fine_structure_constant())"
+python -c "from src.emergent_spacetime import verify_theorem_2_1; print(verify_theorem_2_1())"
 ```
