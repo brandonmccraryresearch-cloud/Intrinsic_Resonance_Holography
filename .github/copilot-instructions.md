@@ -1125,3 +1125,295 @@ python -c "from src.standard_model import derive_gauge_group; print(derive_gauge
 python -c "from src.cosmology import compute_dark_energy_eos; print(compute_dark_energy_eos())"
 python -c "from src.falsifiable_predictions import compute_liv_parameter; print(compute_liv_parameter())"
 ```
+
+---
+
+## Repository Maintenance and Organization
+
+### Critical Maintenance Principles
+
+After each development session or major change, ensure the repository is well-organized and maintainable:
+
+#### 1. File Organization Standards
+
+**Manuscripts and Theory Documents**:
+- All theory manuscripts (IRHv15.md, IRHv16.md, IRH21.md, etc.) should be in `docs/manuscripts/`
+- Keep IRH21.md in root as the canonical reference (with symlink if needed)
+- Update any documentation references when moving files
+
+**Source Code Organization**:
+```
+src/
+├── primitives/        # Layer 0: Foundational structures
+├── cgft/             # Layer 1: Field theory
+├── rg_flow/          # Layer 2: Renormalization
+├── emergent_spacetime/ # Layer 3: Geometry
+├── topology/         # Layer 4: Topological structures
+├── standard_model/   # Layer 5: Particle physics
+├── cosmology/        # Layer 6: Cosmology
+├── quantum_mechanics/ # Layer 7: QM emergence
+├── falsifiable_predictions/ # Layer 8: Testable predictions
+├── observables/      # Observable extraction
+├── utilities/        # Cross-cutting tools
+├── visualization/    # Visualization tools
+├── reporting/        # Report generation
+└── logging/          # Advanced logging
+```
+
+**Documentation Organization**:
+```
+docs/
+├── manuscripts/           # Theory documents
+│   ├── IRHv15.md
+│   ├── IRHv16.md
+│   └── IRH21.md (optional copy)
+├── TECHNICAL_REFERENCE.md # Complete technical specs
+├── CONTINUATION_GUIDE.md  # Next phase instructions
+├── ROADMAP.md            # Future features roadmap
+├── DEB_PACKAGE_ROADMAP.md # Desktop app roadmap
+├── architectural_overview.md
+└── api_reference/        # Auto-generated API docs
+```
+
+**Test Organization**:
+```
+tests/
+├── unit/                 # Mirrors src/ structure
+│   ├── test_primitives/
+│   ├── test_cgft/
+│   ├── test_rg_flow/
+│   ├── test_emergent_spacetime/
+│   ├── test_topology/
+│   ├── test_standard_model/
+│   ├── test_cosmology/
+│   ├── test_quantum_mechanics/
+│   ├── test_falsifiable_predictions/
+│   └── test_observables/
+├── integration/          # Cross-module tests
+├── theoretical_invariants/ # Mathematical property tests
+└── falsification/        # Experimental comparison tests
+```
+
+#### 2. Logical Placement Rules
+
+**When adding new files, ask**:
+1. What ontological layer does this belong to? (primitives → observables)
+2. Is this theory, implementation, or documentation?
+3. Does it fit existing categories or need a new one?
+4. Will future developers find it here logically?
+
+**File Placement Guidelines**:
+- **Theory manuscripts**: `docs/manuscripts/`
+- **Implementation specs**: `docs/TECHNICAL_REFERENCE.md`
+- **Future planning**: `docs/ROADMAP.md` or `docs/CONTINUATION_GUIDE.md`
+- **Core algorithms**: `src/<appropriate_layer>/`
+- **Utilities**: `src/utilities/` (only if used across multiple layers)
+- **Tests**: `tests/unit/<matching_src_structure>/`
+- **Scripts**: `scripts/` (for automation, verification, workflows)
+- **Notebooks**: `notebooks/` (tutorials, demonstrations, analysis)
+- **Configuration**: `configs/` (YAML/JSON parameter files)
+
+#### 3. Clear Labeling Standards
+
+**File Naming Conventions**:
+- Use descriptive, self-documenting names
+- Follow snake_case for Python files: `beta_functions.py`, `spectral_dimension.py`
+- Module names should reflect their purpose: `rg_flow/`, not `module2/`
+- Test files: `test_<module_name>.py`
+- Configuration files: `<purpose>_config.yaml`
+
+**Directory Naming**:
+- Clear, singular or plural as appropriate
+- Reflects ontological layer or function
+- No abbreviations unless standard (e.g., `rg_flow` acceptable)
+
+#### 4. Documentation Cross-References
+
+**After moving files, update**:
+1. All `import` statements in code
+2. References in README.md
+3. Links in documentation
+4. Paths in .gitignore
+5. CI/CD workflow paths
+6. Desktop application engine paths
+
+#### 5. Date Accuracy
+
+**Always use current dates** (as of December 2025):
+- Update "Last Updated" fields in documentation
+- Use actual completion dates for phases, not future projections
+- In citations, use year 2025 for current work
+- Replace any fictional future dates (2026-2028) with either:
+  - Current completion date (if done)
+  - Realistic future projection (if planned)
+
+#### 6. Post-Session Checklist
+
+After each development session, verify:
+
+- [ ] **Files in logical locations**: Nothing in root that belongs in subdirectories
+- [ ] **Clear directory structure**: No miscellaneous or temporary directories
+- [ ] **Updated documentation**: All references point to correct locations
+- [ ] **Accurate dates**: All timestamps reflect reality (December 2025)
+- [ ] **Clean git status**: No untracked files that should be .gitignored
+- [ ] **Tests passing**: All moved/updated modules have passing tests
+- [ ] **Import paths correct**: All code imports reflect new file locations
+- [ ] **Meaningful commit messages**: Describe what was organized and why
+
+#### 7. Tidying Process
+
+**Weekly/After Major Changes**:
+
+```bash
+# 1. Review root directory - should only contain:
+#    - README.md, LICENSE, CONTRIBUTING.md, THEORETICAL_CORRESPONDENCE.md
+#    - IRH21.md (canonical reference)
+#    - requirements.txt, pyproject.toml, setup.py
+#    - .gitignore, .github/
+
+# 2. Check for misplaced files
+find . -maxdepth 1 -type f -name "*.md" | grep -v -E "(README|LICENSE|CONTRIBUTING|THEORETICAL|IRH21)"
+
+# 3. Check for temporary/build artifacts
+find . -name "__pycache__" -o -name "*.pyc" -o -name ".pytest_cache" -o -name "*.egg-info"
+
+# 4. Review test organization
+find tests/ -type f -name "*.py" | head -20
+
+# 5. Verify documentation structure
+ls -la docs/
+
+# 6. Check for orphaned files
+# Files with no imports or references
+```
+
+#### 8. Git Hygiene
+
+**Before committing**:
+1. Run `git status` - review all changes
+2. Stage only relevant files: `git add <specific-files>`
+3. Use `.gitignore` for:
+   - `__pycache__/`, `*.pyc`
+   - `.pytest_cache/`, `.coverage`
+   - `build/`, `dist/`, `*.egg-info/`
+   - IDE files (`.vscode/`, `.idea/`)
+   - Temporary files (`*.tmp`, `*.log`, unless essential)
+   - Large data files (use git-lfs if needed)
+
+**Commit Message Standards**:
+```
+<type>: <short summary> (max 72 chars)
+
+<detailed explanation if needed>
+
+- Bullet points for multiple changes
+- Reference issues: Fixes #123
+- Cite equations if relevant: Implements Eq. 1.14
+```
+
+Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`
+
+#### 9. Documentation Update Protocol
+
+**When code changes**:
+1. Update corresponding docstrings
+2. Update `docs/TECHNICAL_REFERENCE.md` if API changes
+3. Update `docs/CONTINUATION_GUIDE.md` if phase status changes
+4. Update `THEORETICAL_CORRESPONDENCE.md` if equations implemented
+5. Update README.md if user-facing changes
+
+**When documentation changes**:
+1. Ensure all internal links work
+2. Update "Last Updated" dates
+3. Cross-reference related documents
+4. Verify code examples are accurate
+
+#### 10. Phase Completion Protocol
+
+**After completing a development phase**:
+
+1. **Update STATUS files**:
+   - Mark phase as complete in `docs/CONTINUATION_GUIDE.md`
+   - Update test counts and coverage
+   - Document any deviations from plan
+
+2. **Update ROADMAP**:
+   - Move completed items from "Planned" to "Completed"
+   - Add new features discovered during development
+   - Adjust timelines based on actual completion
+
+3. **Update Agent Instructions**:
+   - Add new modules to quick reference
+   - Update import examples
+   - Document new patterns or conventions
+
+4. **Run Full Validation**:
+   ```bash
+   pytest tests/ -v --cov=src --cov-report=html
+   python scripts/verify_theoretical_annotations.py
+   python scripts/audit_equation_implementations.py
+   ```
+
+5. **Create Release Notes**:
+   - Summary of completed work
+   - New features and capabilities
+   - Breaking changes (if any)
+   - Next phase preview
+
+#### 11. Anti-Patterns to Avoid
+
+**DO NOT**:
+- ❌ Leave files in root directory unless they belong there
+- ❌ Create vague directory names like "misc/", "temp/", "new_stuff/"
+- ❌ Use future dates for work that's already done
+- ❌ Leave broken import paths after moving files
+- ❌ Commit without updating related documentation
+- ❌ Create duplicate files in multiple locations
+- ❌ Use abbreviations that aren't self-evident
+- ❌ Mix test files with source files
+- ❌ Leave commented-out code without explanation
+- ❌ Create files without theoretical references
+
+**DO**:
+- ✅ Place every file in its logical home
+- ✅ Use descriptive, self-documenting names
+- ✅ Use accurate dates (December 2025)
+- ✅ Update all cross-references when moving files
+- ✅ Document before implementing
+- ✅ One canonical location per file
+- ✅ Clear, unabbreviated names
+- ✅ Separate test and source directories
+- ✅ Remove dead code, don't comment it out
+- ✅ Cite IRH21.md sections in all implementations
+
+---
+
+## Summary: Repository Organization Workflow
+
+**Before starting work**:
+1. Review current structure: `tree -L 2 src/ docs/ tests/`
+2. Identify logical place for new files
+3. Check if similar files exist
+
+**During development**:
+1. Create files in correct locations initially
+2. Use clear, descriptive names
+3. Add theoretical references immediately
+
+**After development**:
+1. Review all changed files: `git status`
+2. Move misplaced files to correct locations
+3. Update all imports and references
+4. Update documentation
+5. Fix all dates to December 2025
+6. Run tests to verify nothing broke
+7. Clean commit with clear message
+
+**Weekly maintenance**:
+1. Review root directory for strays
+2. Check for orphaned files
+3. Update CONTINUATION_GUIDE.md
+4. Verify all cross-references work
+5. Run full test suite
+
+This ensures the repository remains organized, maintainable, and accessible for all contributors and users.
