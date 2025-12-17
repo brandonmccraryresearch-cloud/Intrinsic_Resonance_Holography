@@ -1201,5 +1201,55 @@ pytest tests/ -v
 
 ---
 
+## Appendix B: Tiered Future Directions
+
+### B.1 Tier 3: Optimization & Scaling (2026)
+
+**Focus**: Performance, parallelization, and scalability
+
+| Phase | Description | Target | Priority |
+|-------|-------------|--------|----------|
+| 3.1 | NumPy Vectorization | Q1 2026 | HIGH |
+| 3.2 | Caching & Memoization | Q1 2026 | HIGH |
+| 3.3 | Memory Optimization | Q2 2026 | MEDIUM |
+| 3.4 | MPI Parallelization | Q2 2026 | MEDIUM |
+| 3.5 | GPU Acceleration (JAX/CuPy) | Q3 2026 | LOW-MED |
+| 3.6 | Distributed Computing | Q4 2026 | LOW |
+| 3.7 | Performance Benchmarks | Q2 2026 | HIGH |
+| 3.8 | Profiling Tools | Q2 2026 | MEDIUM |
+
+### B.2 Tier 4: Ecosystem & Community (2026-2027)
+
+**Focus**: Broader ecosystem, community tools, experimental integration
+
+| Phase | Description | Target | Priority |
+|-------|-------------|--------|----------|
+| 4.1 | Web Interface (FastAPI + React) | Q3 2026 | MEDIUM |
+| 4.2 | Cloud Deployment | Q3 2026 | MEDIUM |
+| 4.3 | ML Surrogate Models | Q4 2026 | LOW |
+| 4.4 | Experimental Data Pipeline | Q4 2026 | MEDIUM |
+| 4.5 | PDG/CODATA Integration | Q1 2027 | MEDIUM |
+| 4.6 | Plugin System | Q1 2027 | LOW |
+| 4.7 | Collaboration Tools | Q2 2027 | LOW |
+| 4.8 | Video Tutorials | Q2 2027 | LOW |
+| 4.9 | Community Forum | Q3 2027 | LOW |
+| 4.10 | Paper Template Generator | Q2 2027 | MEDIUM |
+
+### B.3 Current Milestone Summary
+
+| Tier | Focus | Status | Tests |
+|------|-------|--------|-------|
+| **Tier 1** | Foundation | ✅ COMPLETE | 346+ |
+| **Tier 2** | Applications | ✅ COMPLETE | 137+ |
+| **Tier 3** | Optimization | 🔄 PLANNED | — |
+| **Tier 4** | Ecosystem | 📋 FUTURE | — |
+
+**Total Tests**: 629+ passing
+**Equation Coverage**: 100% (17/17 critical equations)
+
+See [`docs/ROADMAP.md`](./ROADMAP.md) for detailed specifications.
+
+---
+
 *This document should be updated as development progresses. Last review: December 2025*
 
