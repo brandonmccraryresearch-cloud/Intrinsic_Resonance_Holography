@@ -324,7 +324,7 @@ class OutputFormatter:
             # Add theoretical context
             context = self.schema.theoretical_context.get(name)
             if context:
-                lines.append(f"  - *Reference:* {context.get('manuscript', "IRH v21.1 Manuscript (Part 1: Sections 1-4, Part 2: Sections 5-8 + Appendices)")} "
+                lines.append(f"  - *Reference:* {context.get('manuscript', 'IRH v21.1 Manuscript (Part 1: Sections 1-4, Part 2: Sections 5-8 + Appendices)')} "
                            f"{context.get('section', '')} {context.get('equation', '')}")
         
         lines.extend([
