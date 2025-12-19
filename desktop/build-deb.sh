@@ -1,5 +1,6 @@
 #!/bin/bash
 # Build script for IRH Desktop .deb package
+set -euo pipefail
 # 
 # This script builds a Debian package for the IRH Desktop application.
 # The package can be installed on Debian/Ubuntu systems.
