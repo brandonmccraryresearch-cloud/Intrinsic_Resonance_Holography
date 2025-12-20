@@ -24,6 +24,7 @@ Last Updated: December 2025
 from __future__ import annotations
 
 import json
+import logging
 import pickle
 import time
 from dataclasses import dataclass
@@ -33,6 +34,9 @@ from typing import Any, Dict, Optional
 
 __version__ = "1.0.0"
 __module_type__ = "infrastructure"
+
+# Set up module logger
+logger = logging.getLogger(__name__)
 
 
 # =============================================================================
@@ -145,8 +149,11 @@ class CacheManager:
                 else:
                     # Remove expired file
                     cache_file.unlink()
-            except Exception:
-                # Skip corrupted cache files
+            except Exception as e:
+                # Log and skip corrupted cache files
+                logger.warning(
+                    f"Skipping corrupted cache file {cache_file}: {type(e).__name__}: {e}"
+                )
                 continue
     
     def _save_to_disk(self, entry: CacheEntry):
