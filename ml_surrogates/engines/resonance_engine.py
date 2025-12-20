@@ -21,6 +21,25 @@ except ImportError:
     from holographic_state import CouplingState, HolographicState
 
 
+def _rk4_step(k1: float, k2: float, k3: float, k4: float, d_ln_k: float) -> float:
+    """
+    Compute RK4 weighted sum for a single coupling.
+    
+    Parameters
+    ----------
+    k1, k2, k3, k4 : float
+        RK4 stage derivatives
+    d_ln_k : float
+        Step size in log scale
+        
+    Returns
+    -------
+    float
+        Weighted sum for RK4 update
+    """
+    return (d_ln_k / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+
+
 class ResonanceEngine:
     """
     Symbolic computation engine for IRH field dynamics.
@@ -300,10 +319,10 @@ class ResonanceEngine:
                 )
                 k4_l, k4_g, k4_m = self.compute_beta_functions(end_state)
 
-                # Combined step
-                lambda_new = current.lambda_tilde + (d_ln_k / 6.0) * (k1_l + 2*k2_l + 2*k3_l + k4_l)
-                gamma_new = current.gamma_tilde + (d_ln_k / 6.0) * (k1_g + 2*k2_g + 2*k3_g + k4_g)
-                mu_new = current.mu_tilde + (d_ln_k / 6.0) * (k1_m + 2*k2_m + 2*k3_m + k4_m)
+                # Combined step using helper function
+                lambda_new = current.lambda_tilde + _rk4_step(k1_l, k2_l, k3_l, k4_l, d_ln_k)
+                gamma_new = current.gamma_tilde + _rk4_step(k1_g, k2_g, k3_g, k4_g, d_ln_k)
+                mu_new = current.mu_tilde + _rk4_step(k1_m, k2_m, k3_m, k4_m, d_ln_k)
 
             else:
                 raise ValueError(f"Unknown integration method: {method}")

@@ -21,6 +21,10 @@ except ImportError:
     JAX_AVAILABLE = False
 
 
+# Constants for numerical stability
+SCALE_DIFF_TOLERANCE = 1e-12  # Minimum scale difference to avoid division by zero
+
+
 @dataclass
 class CouplingState:
     """
@@ -228,7 +232,7 @@ class HolographicState:
                 prev = self.trajectory[i]
                 dk = curr.k - prev.k
 
-                if abs(dk) > 1e-12:
+                if abs(dk) > SCALE_DIFF_TOLERANCE:
                     beta_lambda = (curr.lambda_tilde - prev.lambda_tilde) / dk
                     beta_gamma = (curr.gamma_tilde - prev.gamma_tilde) / dk
                     beta_mu = (curr.mu_tilde - prev.mu_tilde) / dk
