@@ -135,14 +135,14 @@ def test_no_hardcoded_usage():
         result = compute_fermion_mass('electron', verbosity=0)
         
         # Verify that get_topological_complexity was actually called
-        mock_complexity.assert_called_once()
-        
-        # Verify it was called with the correct fermion name
-        call_args = mock_complexity.call_args
-        assert call_args[0][0] == 'electron', "get_topological_complexity should be called with fermion name"
+        mock_complexity.assert_called_once_with('electron', verbosity=0)
         
         # Verify the result contains the computed K_f value
         assert 'K_f' in result, "Result should contain computed K_f value"
+        assert result['K_f'] > 0, "K_f should be positive"
+        
+    # Additional test: Verify that if we mock the complexity operator to return
+    # a different value, it affects the final mass calculation
         assert result['K_f'] > 0, "K_f should be positive"
         
     # Additional test: Verify that if we mock the complexity operator to return
