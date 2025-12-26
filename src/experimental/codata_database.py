@@ -159,15 +159,17 @@ ALPHA = ExperimentalValue(
     notes="Fine-structure constant α",
 )
 
-# Inverse fine-structure constant (derived)
+# Inverse fine-structure constant (CODATA 2022 - most recent available)
+# Updated December 2025: Previous code claimed CODATA 2018 = 137.035999084
+# but this is actually the IRH claim, not CODATA measurement
 ALPHA_INVERSE = ExperimentalValue(
-    value=137.035999084,  # From experimental measurement (for comparison)
+    value=137.035999177,  # CODATA 2022 value (correct)
     uncertainty=0.000000021,
     unit="dimensionless",
-    source="CODATA 2018",
-    year=2018,
+    source="CODATA 2022",
+    year=2022,
     reference="https://physics.nist.gov/cgi-bin/cuu/Value?alphinv",
-    notes="Inverse fine-structure constant α⁻¹",
+    notes="Inverse fine-structure constant α⁻¹ (CODATA 2022)",
 )
 
 # Gravitational constant (CODATA 2018)

@@ -1,12 +1,19 @@
 """
 Fine-Structure Constant Derivation
 
-THEORETICAL FOUNDATION: IRH21.md §3.2.1-3.2.2, Eq. 3.4-3.5
+THEORETICAL FOUNDATION: IRH v21.4 Part 1 §3.2.1-3.2.2, Eq. 3.4-3.5
 
 This module implements the derivation of the fine-structure constant α⁻¹
 from the Cosmic Fixed Point couplings and topological invariants.
 
-Target value: α⁻¹ = 137.035999084(1)  # From experimental measurement (for comparison)
+CRITICAL IMPLEMENTATION NOTICE:
+    The current implementation HARDCODES the claimed value instead of computing
+    it from first principles. The non-perturbative terms (𝒢_QNCD and 𝒱) are
+    NOT implemented, making this a circular "prediction" that assumes its result.
+    
+    Manuscript claims: α⁻¹ = 137.035999084(1) matching "CODATA 2026"
+    CODATA 2022 (actual): α⁻¹ = 137.035999177(21)
+    Discrepancy: 0.000000093 (approximately 4.4σ deviation)
 
 Mathematical Foundation:
     The fine-structure constant emerges from the interplay of:
@@ -14,11 +21,17 @@ Mathematical Foundation:
     2. Universal exponent C_H
     3. Topological invariants (β₁ = 12, n_inst = 3)
     4. Gauge group structure from Betti numbers
+    5. **NON-PERTURBATIVE CORRECTIONS (NOT IMPLEMENTED)**:
+       - 𝒢_QNCD: Geometric factor from QNCD metric
+       - 𝒱: Vertex corrections from graviton loops
 
-    The formula (Eq. 3.4-3.5) achieves 12-digit agreement with experiment.
+    The formula (Eq. 3.4-3.5) claims 12-digit agreement, but:
+    - Implementation is incomplete (missing 𝒢_QNCD and 𝒱)
+    - Result is preset, not computed
+    - Disagrees with CODATA 2022 by 4.4σ
 
 Authors: IRH Computational Framework Team
-Last Updated: December 2024 (synchronized with IRH21.md v21.0)
+Last Updated: December 2025 (verification audit)
 """
 
 from __future__ import annotations
@@ -53,20 +66,27 @@ except ImportError:
     _TRANSPARENCY_AVAILABLE = False
     TransparencyEngine = None
 
-__version__ = "21.0.0"
-__theoretical_foundation__ = "IRH21.md §3.2.1-3.2.2, Eq. 3.4-3.5"
+__version__ = "21.4.0"
+__theoretical_foundation__ = "IRH v21.4 Part 1 §3.2.1-3.2.2, Eq. 3.4-3.5"
+__implementation_status__ = "INCOMPLETE - Non-perturbative terms not computed"
+__circularity_warning__ = "Current implementation hardcodes result instead of computing it"
 
 
 # =============================================================================
 # Physical Constants
 # =============================================================================
 
-# Experimental value of α⁻¹ (CODATA 2018)
-ALPHA_INVERSE_EXPERIMENTAL = 137.035999084  # From experimental measurement (for comparison)
-ALPHA_INVERSE_UNCERTAINTY = 0.000000021
+# Experimental value of α⁻¹ (CODATA 2022 - most recent available)
+# Source: CODATA 2022, https://physics.nist.gov/cgi-bin/cuu/Value?alphinv
+# Note: Manuscript claims "CODATA 2026" but this does not exist as of December 2025
+ALPHA_INVERSE_EXPERIMENTAL = 137.035999177  # CODATA 2022 value
+ALPHA_INVERSE_UNCERTAINTY = 0.000000021     # 1σ uncertainty
 
-# IRH predicted value (Eq. 3.5)
-ALPHA_INVERSE_PREDICTED = 137.035999084  # 12-digit accuracy - experimental value
+# IRH claimed prediction (Eq. 3.5 in manuscript)
+# WARNING: This value is hardcoded, not computed from first principles
+# The manuscript claims α⁻¹ = 137.035999084(1) but this disagrees with CODATA 2022
+# Discrepancy: 0.000000093 (approximately 4.4σ)
+ALPHA_INVERSE_CLAIMED = 137.035999084  # IRH manuscript claim (NOT computed)
 
 
 # =============================================================================
@@ -176,35 +196,53 @@ def compute_fine_structure_constant(
         fixed_point = find_fixed_point()
     
     if method == 'analytical':
-        # Return certified analytical prediction
-        alpha_inv = ALPHA_INVERSE_PREDICTED
-        uncertainty = 1e-9  # 12-digit accuracy
+        # WARNING: This returns a HARDCODED value, not a true analytical computation
+        # The non-perturbative terms (𝒢_QNCD and 𝒱) are NOT implemented
+        # This creates circular reasoning: claiming to predict what is actually preset
+        alpha_inv = ALPHA_INVERSE_CLAIMED
+        uncertainty = 1e-9  # Claimed precision (not actually achieved)
         components = {
             'method': 'analytical',
             'value': alpha_inv,
-            'note': 'Certified prediction from IRH21.md Eq. 3.5'
+            'note': 'HARDCODED - Not computed from first principles',
+            'missing_terms': ['G_QNCD', 'V_vertex_corrections'],
+            'theoretical_reference': 'IRH v21.4 Eq. 3.4-3.5',
+            'implementation_status': 'INCOMPLETE',
+            'circularity_warning': 'Result is preset, not emergent',
         }
         
     elif method == 'leading':
         # Leading-order approximation (simplified formula)
         # α⁻¹ ≈ (4π / C_H) × topological_factor
+        # WARNING: This omits critical non-perturbative corrections
         C_H = C_H_SPECTRAL
         topological_factor = _compute_topological_factor(BETA_1, N_INST)
         
         alpha_inv = (4 * math.pi / C_H) * topological_factor
-        uncertainty = abs(alpha_inv - ALPHA_INVERSE_PREDICTED) + 1e-6
+        uncertainty = abs(alpha_inv - ALPHA_INVERSE_EXPERIMENTAL) + 1e-6
         
         components = {
             'method': 'leading',
             'C_H': C_H,
             'topological_factor': topological_factor,
             '4pi_over_C_H': 4 * math.pi / C_H,
+            'note': 'Leading order only - missing non-perturbative terms',
+            'deviation_from_experiment': alpha_inv - ALPHA_INVERSE_EXPERIMENTAL,
         }
         
     elif method == 'full':
         # Full formula with all corrections (Eq. 3.4-3.5)
+        # WARNING: This is INCOMPLETE - returns hardcoded value
+        # The non-perturbative integrals (𝒢_QNCD and 𝒱) are NOT computed
         alpha_inv, components = _compute_alpha_inverse_full(fixed_point)
-        uncertainty = 1e-9  # Target 12-digit accuracy
+        uncertainty = abs(alpha_inv - ALPHA_INVERSE_EXPERIMENTAL)  # Actual uncertainty
+        components['experimental_discrepancy'] = {
+            'claimed_value': ALPHA_INVERSE_CLAIMED,
+            'codata_2022': ALPHA_INVERSE_EXPERIMENTAL,
+            'difference': ALPHA_INVERSE_CLAIMED - ALPHA_INVERSE_EXPERIMENTAL,
+            'sigma_deviation': (ALPHA_INVERSE_CLAIMED - ALPHA_INVERSE_EXPERIMENTAL) / ALPHA_INVERSE_UNCERTAINTY,
+            'status': 'INCONSISTENT (4.4σ deviation)',
+        }
         
     else:
         raise ValueError(f"Unknown method: {method}")
@@ -266,7 +304,23 @@ def _compute_alpha_inverse_full(fixed_point: CosmicFixedPoint) -> tuple:
     """
     Compute α⁻¹ using full formula from Eq. 3.4-3.5.
     
-    This implements the complete derivation with all corrections.
+    WARNING: INCOMPLETE IMPLEMENTATION
+    ===================================
+    This function claims to implement the "full" formula but actually:
+    1. Returns a HARDCODED value (ALPHA_INVERSE_CLAIMED)
+    2. Does NOT compute non-perturbative terms:
+       - 𝒢_QNCD(λ̃*, γ̃*, μ̃*): Geometric factor from QNCD metric
+       - 𝒱(λ̃*, γ̃*, μ̃*): Vertex corrections from graviton loops
+    3. Creates CIRCULAR REASONING by presetting the "prediction"
+    
+    The manuscript claims these terms are "analytically derived" but requires
+    numerical computation via HarmonyOptimizer. This computation is NOT implemented.
+    
+    Theoretical Formula (Eq. 3.4-3.5):
+        α⁻¹ = (4π²γ̃*/λ̃*) × [1 + (μ̃*/48π²)Σₙ Aₙ/ln^n(Λ_UV²/k²) + 𝒢_QNCD + 𝒱]
+        
+    Current Implementation:
+        α⁻¹ = HARDCODED_VALUE  ← Circular!
     
     Parameters
     ----------
@@ -301,20 +355,22 @@ def _compute_alpha_inverse_full(fixed_point: CosmicFixedPoint) -> tuple:
     # Step 3: Generation factor from n_inst
     generation_factor = _compute_generation_factor(n_inst)
     
-    # Step 4: Fixed-point corrections
+    # Step 4: Fixed-point corrections (simplified - not complete formula)
     fp_correction = _compute_fixed_point_correction(
         lambda_star, gamma_star, mu_star
     )
     
-    # Step 5: Combine all contributions
-    # The full formula (Eq. 3.4-3.5) is complex; for now we use
-    # the certified analytical value and show the component structure
+    # Step 5: MISSING CRITICAL TERMS
+    # 𝒢_QNCD: Would require discretized functional integral over G_inf
+    # 𝒱: Would require loop corrections with HarmonyOptimizer
+    # Instead, the code just returns the hardcoded claim:
     
-    # For exact agreement with certified value:
-    alpha_inv = ALPHA_INVERSE_PREDICTED
+    alpha_inv = ALPHA_INVERSE_CLAIMED  # ← CIRCULAR REASONING
     
     components = {
         'method': 'full',
+        'IMPLEMENTATION_STATUS': 'INCOMPLETE',
+        'CIRCULARITY_WARNING': 'Result is hardcoded, not computed',
         'base_4pi_C_H': base,
         'C_H_used': C_H,
         'gauge_factor': gauge_factor,
@@ -325,7 +381,18 @@ def _compute_alpha_inverse_full(fixed_point: CosmicFixedPoint) -> tuple:
         'lambda_star': lambda_star,
         'gamma_star': gamma_star,
         'mu_star': mu_star,
-        'theoretical_formula': 'α⁻¹ = (4π/C_H) × gauge_factor × generation_factor × fp_correction',
+        'theoretical_formula': 'α⁻¹ = (4π²γ̃*/λ̃*)[1 + (μ̃*/48π²)Σ + 𝒢_QNCD + 𝒱]',
+        'NOT_IMPLEMENTED': {
+            'G_QNCD': 'Geometric factor from QNCD metric - requires functional integral',
+            'V_vertex': 'Vertex corrections from graviton loops - requires HarmonyOptimizer',
+            'RG_sum': 'Logarithmic enhancement series - coefficients not computed',
+        },
+        'CODATA_2022_comparison': {
+            'claimed': ALPHA_INVERSE_CLAIMED,
+            'experimental': ALPHA_INVERSE_EXPERIMENTAL,
+            'discrepancy': ALPHA_INVERSE_CLAIMED - ALPHA_INVERSE_EXPERIMENTAL,
+            'sigma_deviation': (ALPHA_INVERSE_CLAIMED - ALPHA_INVERSE_EXPERIMENTAL) / ALPHA_INVERSE_UNCERTAINTY,
+        }
     }
     
     return alpha_inv, components
@@ -439,7 +506,10 @@ def alpha_inverse_from_fixed_point(
 
 def verify_alpha_inverse_precision(n_digits: int = 9) -> Dict[str, Any]:
     """
-    Verify the precision of α⁻¹ derivation.
+    Verify the precision of α⁻¹ derivation against CODATA 2022.
+    
+    WARNING: This function exposes the discrepancy between IRH's claim
+    and actual experimental data.
     
     Parameters
     ----------
@@ -449,30 +519,86 @@ def verify_alpha_inverse_precision(n_digits: int = 9) -> Dict[str, Any]:
     Returns
     -------
     dict
-        Verification results
+        Verification results showing FAILURE to match CODATA 2022
     """
     result = compute_fine_structure_constant(method='analytical')
     
     # Compare digit by digit
-    predicted_str = f"{result.alpha_inverse:.{n_digits}f}"
+    claimed_str = f"{result.alpha_inverse:.{n_digits}f}"
     experimental_str = f"{ALPHA_INVERSE_EXPERIMENTAL:.{n_digits}f}"
     
     matching_digits = 0
-    for p, e in zip(predicted_str, experimental_str):
+    for p, e in zip(claimed_str, experimental_str):
         if p == e:
             matching_digits += 1
         else:
             break
     
+    # Calculate discrepancy statistics
+    discrepancy = result.alpha_inverse - ALPHA_INVERSE_EXPERIMENTAL
+    sigma_dev = discrepancy / ALPHA_INVERSE_UNCERTAINTY
+    
     return {
-        'predicted': result.alpha_inverse,
-        'experimental': ALPHA_INVERSE_EXPERIMENTAL,
-        'predicted_str': predicted_str,
+        'claimed_prediction': result.alpha_inverse,
+        'codata_2022_value': ALPHA_INVERSE_EXPERIMENTAL,
+        'codata_uncertainty': ALPHA_INVERSE_UNCERTAINTY,
+        'claimed_str': claimed_str,
         'experimental_str': experimental_str,
         'matching_digits': matching_digits,
+        'first_mismatch_digit': matching_digits + 1 if matching_digits < len(claimed_str) else None,
         'target_digits': n_digits,
         'passed': matching_digits >= n_digits,
-        'sigma_deviation': result.sigma_deviation,
+        'discrepancy': discrepancy,
+        'sigma_deviation': sigma_dev,
+        'consistency_status': 'FAIL - 4.4σ deviation' if abs(sigma_dev) > 3 else 'PASS',
+        'manuscript_claim': '12-digit agreement with "CODATA 2026"',
+        'reality': 'CODATA 2026 does not exist; 4.4σ from CODATA 2022',
+    }
+
+
+# =============================================================================
+# Module-Level Diagnostics
+# =============================================================================
+
+def get_implementation_warnings() -> Dict[str, Any]:
+    """
+    Get comprehensive warnings about incomplete implementation.
+    
+    Returns
+    -------
+    dict
+        Implementation status and warnings
+    """
+    return {
+        'implementation_status': 'INCOMPLETE',
+        'circularity_detected': True,
+        'warnings': [
+            'Non-perturbative terms (𝒢_QNCD, 𝒱) are NOT computed',
+            'Result is hardcoded, not emergent from first principles',
+            'Claimed "CODATA 2026" does not exist (as of December 2025)',
+            'Prediction disagrees with CODATA 2022 by 4.4σ',
+            'Current implementation violates non-circularity requirement',
+        ],
+        'missing_implementations': [
+            'G_QNCD: Functional integral over QNCD metric on G_inf',
+            'V_vertex: Loop corrections via HarmonyOptimizer',
+            'RG_sum: Logarithmic enhancement coefficients A_n',
+        ],
+        'experimental_comparison': {
+            'claimed_value': ALPHA_INVERSE_CLAIMED,
+            'codata_2022': ALPHA_INVERSE_EXPERIMENTAL,
+            'discrepancy': ALPHA_INVERSE_CLAIMED - ALPHA_INVERSE_EXPERIMENTAL,
+            'sigma_deviation': (ALPHA_INVERSE_CLAIMED - ALPHA_INVERSE_EXPERIMENTAL) / ALPHA_INVERSE_UNCERTAINTY,
+            'status': 'INCONSISTENT',
+        },
+        'required_for_completion': [
+            'Implement QNCD metric functional integrals',
+            'Implement HarmonyOptimizer vertex correction computation',
+            'Compute RG flow enhancement coefficients A_n',
+            'Remove hardcoded values',
+            'Validate against CODATA 2022 (not fictional future data)',
+        ],
+        'theoretical_reference': 'IRH v21.4 Part 1 §3.2.2, Eq. 3.4-3.5',
     }
 
 
@@ -485,7 +611,7 @@ __all__ = [
     # Constants
     'ALPHA_INVERSE_EXPERIMENTAL',
     'ALPHA_INVERSE_UNCERTAINTY',
-    'ALPHA_INVERSE_PREDICTED',
+    'ALPHA_INVERSE_CLAIMED',
     'BETA_1',
     'N_INST',
     
@@ -496,4 +622,5 @@ __all__ = [
     'compute_fine_structure_constant',
     'alpha_inverse_from_fixed_point',
     'verify_alpha_inverse_precision',
+    'get_implementation_warnings',
 ]
