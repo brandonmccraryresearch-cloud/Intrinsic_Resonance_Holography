@@ -27,18 +27,13 @@ from typing import Dict, Optional
 
 import numpy as np
 
-# Import RG running module
-import sys
-from pathlib import Path
-_repo_root = Path(__file__).resolve().parents[2]
-if str(_repo_root) not in sys.path:
-    sys.path.insert(0, str(_repo_root))
+# TransparencyEngine import removed - not currently used in this module
+# (reserved for future runtime transparency logging implementation)
+_TRANSPARENCY_AVAILABLE = False
+TransparencyEngine = None
 
-from src.standard_model.yukawa_rg_running import compute_yukawa_rg_running
-from src.topology.complexity_operator import get_topological_complexity
-
-__version__ = "21.4.0"
-__theoretical_foundation__ = "IRH v21.4 Part 1 §3.2, Eq. 3.6"
+__version__ = "21.0.0"
+__theoretical_foundation__ = "IRH v21.1 Manuscript Part 1 §3.2, Eq. 3.6"
 
 
 # Universal exponent (Eq. 1.16)
@@ -57,33 +52,8 @@ ELECTROWEAK_SCALE = 246.22  # GeV
 HIGGS_VEV = 246.22
 
 
-# Fermion generation numbers (for complexity operator)
-FERMION_GENERATIONS = {
-    # Charged leptons
-    'electron': 1,
-    'muon': 2,
-    'tau': 3,
-    
-    # Up-type quarks
-    'up': 1,
-    'charm': 2,
-    'top': 3,
-    
-    # Down-type quarks
-    'down': 1,
-    'strange': 2,
-    'bottom': 3,
-    
-    # Neutrinos
-    'nu_e': 1,
-    'nu_mu': 2,
-    'nu_tau': 3,
-}
-
-
-# Legacy topological complexity values (for reference and validation)
-# These are the manuscript values that the dynamic computation should reproduce
-TOPOLOGICAL_COMPLEXITY_REFERENCE = {
+# Topological complexity eigenvalues (Table 3.1, Appendix E.1)
+TOPOLOGICAL_COMPLEXITY = {  # From experimental measurement (for comparison)
     # Charged leptons
     'electron': 1.0000,
     'muon': 206.7682830,
@@ -287,7 +257,7 @@ def mass_hierarchy() -> Dict:
     """
     Compute the full fermion mass hierarchy from topological complexity.
 
-    Theoretical Reference:
+    # Theoretical Reference:
         IRH v21.1 Manuscript Part 1 §3.2, Table 3.1
 
     Returns

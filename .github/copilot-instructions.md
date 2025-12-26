@@ -1,10 +1,57 @@
-# Intrinsic Resonance Holography (IRH) v21.0 - Copilot Instructions
+# Intrinsic Resonance Holography (IRH) v21.4 - Copilot Instructions
+
+## 🔴 CRITICAL: MANDATORY DOCUMENTATION POLICY 🔴
+
+**Effective Date:** December 26, 2025  
+**Authority:** Repository Maintainer + The Mathematical Sentinel  
+**Status:** PERMANENT AND NON-NEGOTIABLE
+
+### Single Source of Truth Mandate
+
+**ALL repository updates, progress reports, current status, mandates, rules, and compliance policies SHALL be written directly to THIS FILE (`copilot-instructions.md`) and NO OTHER.**
+
+This includes:
+- ✅ Session progress updates
+- ✅ Current implementation status
+- ✅ Active mandates and policies
+- ✅ Compliance requirements
+- ✅ Phase tracking and completion status
+- ✅ All transient session-to-session instructions
+
+### Strict Prohibition on Additional Documentation Files
+
+**FORBIDDEN:** Creating new `.md` files in `.github/` that could be consolidated here, EXCEPT:
+- ✅ `.github/agents/*.agent.md` (agent configurations - ALLOWED)
+- ✅ `.github/workflows/*.yml` (workflow configurations - ALLOWED)
+- ✅ `.github/pull_request_template.md` (GitHub template - ALLOWED)
+- ✅ `.github/dependabot.yml` (dependency management - ALLOWED)
+- ❌ ALL OTHER `.md` files (mandate documents, status reports, compliance docs, audit reports, etc.) - MUST be integrated into copilot-instructions.md
+
+**Rationale:** Eliminates documentation fragmentation, ensures single source of truth, prevents inconsistencies.
+
+### User-Visible Documentation Requirements
+
+All updates to `copilot-instructions.md` MUST trigger corresponding updates to user-visible documentation:
+- **README.md** - MUST reflect current repository state, implementation status, and correct references
+- **docs/** - Technical documentation MUST remain synchronized with this file
+- **Manuscript references** - ALL references MUST point to IRH v21.4 (NOT other versions)
+
+### Update Protocol
+
+After EVERY development session:
+1. Update relevant section in `copilot-instructions.md` with changes
+2. Update progress in transient session tracking section (see below)
+3. Update README.md to reflect any user-visible changes
+4. Verify all cross-references remain valid
+5. Commit changes with descriptive message
+
+---
 
 ## Computational Verification Protocol for Isomorphic Implementation
 
 ### Executive Mandate
 
-This repository implements a comprehensive, systematic verification protocol ensuring that every algorithmic implementation, computational construct, and symbolic representation constitutes a **faithful, structure-preserving homomorphism** of the mathematical edifice articulated in the theoretical manuscript the IRH v21.1 Manuscript ([Part 1](../Intrinsic_Resonance_Holography-v21.1-Part1.md): Sections 1-4, [Part 2](../Intrinsic_Resonance_Holography-v21.1-Part2.md): Sections 5-8 + Appendices). This transcends mere code-documentation correspondence; it demands an **isomorphic embedding** whereby the computational substrate recapitulates, with maximal fidelity, the axiomatic structure, constraint topology, dynamical evolution operators, and emergent phenomenology specified in the rigorous mathematical formalism.
+This repository implements a comprehensive, systematic verification protocol ensuring that every algorithmic implementation, computational construct, and symbolic representation constitutes a **faithful, structure-preserving homomorphism** of the mathematical edifice articulated in the theoretical manuscript the IRH v21.4 Manuscript ([Part 1](../Intrinsic-Resonance-Holography-21.4-Part1.md): Sections 1-4, [Part 2](../Intrinsic-Resonance-Holography-21.4-Part2.md): Sections 5-8 + Appendices). This transcends mere code-documentation correspondence; it demands an **isomorphic embedding** whereby the computational substrate recapitulates, with maximal fidelity, the axiomatic structure, constraint topology, dynamical evolution operators, and emergent phenomenology specified in the rigorous mathematical formalism.
 
 The ultimate objective is to **transmute the repository into an executable instantiation of the theoretical formalism itself**, collapsing the distinction between "code that models theory" and "theory rendered computable" into identity.
 
@@ -19,11 +66,11 @@ IRH is a theoretical physics framework that derives fundamental constants and ph
 - Exascale-ready implementation with certified numerical precision (12+ decimal places)
 - Multi-version architecture (v16, v18, v21) with incremental enhancements
 - Complete physics derivations: Quantum Mechanics, General Relativity, Standard Model
-- **Full theoretical traceability** - every function cites specific equations from the IRH v21.1 Manuscript
+- **Full theoretical traceability** - every function cites specific equations from the IRH v21.4 Manuscript
 
 **Target Audience:** Theoretical physicists, computational scientists, researchers in quantum gravity and emergent spacetime
 
-## Theoretical Foundation (IRH v21.1 Manuscript)
+## Theoretical Foundation (IRH v21.4 Manuscript)
 
 ### Core Mathematical Structure
 
@@ -91,7 +138,7 @@ Intrinsic-Resonance-Holography-/
 │   │   ├── core/
 │   │   │   ├── v16/          # v16 implementation (ACW, AHS, ARO, NCD, Harmony)
 │   │   │   ├── v18/          # v18 cGFT implementation (analytical derivations)
-│   │   │   └── v21/          # v21 quaternionic cGFT (full IRH v21.1 implementation)
+│   │   │   └── v21/          # v21 quaternionic cGFT (full IRH v21.4 implementation)
 │   │   ├── predictions/      # Physical constant predictions
 │   │   └── ...
 │   └── tests/
@@ -99,12 +146,12 @@ Intrinsic-Resonance-Holography-/
 │       ├── v18/              # v18 unit tests
 │       └── v21/              # v21 verification suite
 ├── docs/
-│   ├── manuscripts/          # Theory manuscripts (IRHv16.md, IRH18.md, IRH v21.1 (Part 1 & Part 2))
+│   ├── manuscripts/          # Theory manuscripts (IRHv16.md, IRH18.md, IRH v21.4 (Part 1 & Part 2))
 │   ├── code_theory_map.html  # Interactive code↔theory cross-reference
 │   └── ...
 ├── configs/                  # Configuration files for validation
-├── Intrinsic_Resonance_Holography-v21.1-Part1.md  # Primary manuscript Part 1
-├── Intrinsic_Resonance_Holography-v21.1-Part2.md  # Primary manuscript Part 2
+├── Intrinsic-Resonance-Holography-21.4-Part1.md  # Primary manuscript Part 1
+├── Intrinsic-Resonance-Holography-21.4-Part2.md  # Primary manuscript Part 2
 ├── webapp/                   # Web interface (FastAPI + Streamlit)
 ├── notebooks/                # Jupyter notebooks for demonstrations
 └── pyproject.toml
@@ -114,7 +161,7 @@ Intrinsic-Resonance-Holography-/
 
 ### Phase I: Structural Verification
 
-Every computational implementation must realize a **structure-preserving map** from theoretical objects in the IRH v21.1 Manuscript ([Part 1](../Intrinsic_Resonance_Holography-v21.1-Part1.md): Sections 1-4, [Part 2](../Intrinsic_Resonance_Holography-v21.1-Part2.md): Sections 5-8 + Appendices):
+Every computational implementation must realize a **structure-preserving map** from theoretical objects in the IRH v21.4 Manuscript ([Part 1](../Intrinsic-Resonance-Holography-21.4-Part1.md): Sections 1-4, [Part 2](../Intrinsic-Resonance-Holography-21.4-Part2.md): Sections 5-8 + Appendices):
 
 1. **Group Manifold Representation**
    - SU(2) via quaternionic parameterization: u = q₀ + iq₁ + jq₂ + kq₃
@@ -639,7 +686,7 @@ class AlgorithmicHolonomicState:
 5. **Documentation**: Link all code to manuscript equations
 6. **Backward compatibility**: v16 extends v15 without breaking changes
 7. **Incremental implementation**: Test each component before integration
-8. **Theoretical Traceability**: Every function cites specific equations from the IRH v21.1 Manuscript
+8. **Theoretical Traceability**: Every function cites specific equations from the IRH v21.4 Manuscript
 9. **Algorithmic Transparency**: Runtime instrumentation emits theoretical context
 10. **Uncertainty Quantification**: All outputs include rigorous error propagation
 
@@ -648,7 +695,7 @@ class AlgorithmicHolonomicState:
 ### Unit Tests with Theoretical Grounding
 
 Every function must include:
-- Docstring citing IRH v21.1 Manuscript reference
+- Docstring citing IRH v21.4 Manuscript reference
 - Unit test validating theoretical properties
 
 ```python
@@ -657,7 +704,7 @@ def compute_laplace_beltrami(phi, generator_idx, arg_idx, group_lattice):
     Compute Laplace-Beltrami operator Δₐ^(i) acting on cGFT field.
     
     Theoretical Reference:
-        IRH v21.1 Manuscript Part 1 §1.1, Eq. 1.1
+        IRH v21.4 Manuscript Part 1 §1.1, Eq. 1.1
         Kinetic term: S_kin = ∫[∏dg_i] φ̄·[Σₐ Σᵢ Δₐ^(i)]·φ
     """
 ```
@@ -722,7 +769,7 @@ Critical computations must be verified via independent algorithms:
 
 Every contribution to the IRH codebase must satisfy:
 
-**✓** Theoretical Traceability: Every function cites specific equations from the IRH v21.1 Manuscript ([Part 1](../Intrinsic_Resonance_Holography-v21.1-Part1.md): Sections 1-4, [Part 2](../Intrinsic_Resonance_Holography-v21.1-Part2.md): Sections 5-8 + Appendices)  
+**✓** Theoretical Traceability: Every function cites specific equations from the IRH v21.4 Manuscript ([Part 1](../Intrinsic-Resonance-Holography-21.4-Part1.md): Sections 1-4, [Part 2](../Intrinsic-Resonance-Holography-21.4-Part2.md): Sections 5-8 + Appendices)  
 **✓** Algorithmic Transparency: Runtime instrumentation emits theoretical context  
 **✓** Uncertainty Quantification: All outputs include rigorous error propagation  
 **✓** Cross-Validation: Critical computations verified via independent algorithms  
@@ -1482,8 +1529,8 @@ After each development session or major change, ensure the repository is well-or
 #### 1. File Organization Standards
 
 **Manuscripts and Theory Documents**:
-- All theory manuscripts (IRHv15.md, IRHv16.md, IRH v21.1 (Part 1 & Part 2), etc.) should be in `docs/manuscripts/`
-- Keep IRH v21.1 manuscript parts (Part1.md, Part2.md) in root as the canonical reference (with symlink if needed)
+- All theory manuscripts (IRHv15.md, IRHv16.md, IRH v21.4 (Part 1 & Part 2), etc.) should be in `docs/manuscripts/`
+- Keep IRH v21.4 manuscript parts (Part1.md, Part2.md) in root as the canonical reference (with symlink if needed)
 - Update any documentation references when moving files
 
 **Source Code Organization**:
@@ -1511,7 +1558,7 @@ docs/
 ├── manuscripts/           # Theory documents
 │   ├── IRHv15.md
 │   ├── IRHv16.md
-│   └── IRH v21.1 (optional copies of Part 1 & Part 2)
+│   └── IRH v21.4 (optional copies of Part 1 & Part 2)
 ├── TECHNICAL_REFERENCE.md # Complete technical specs
 ├── CONTINUATION_GUIDE.md  # Next phase instructions
 ├── ROADMAP.md            # Future features roadmap
@@ -1612,7 +1659,7 @@ After each development session, verify:
 ```bash
 # 1. Review root directory - should only contain:
 #    - README.md, LICENSE, CONTRIBUTING.md, THEORETICAL_CORRESPONDENCE.md
-#    - IRH v21.1 manuscript (Part 1 & Part 2, canonical references)
+#    - IRH v21.4 manuscript (Part 1 & Part 2, canonical references)
 #    - requirements.txt, pyproject.toml, setup.py
 #    - .gitignore, .github/
 
@@ -1729,7 +1776,7 @@ Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `perf`
 - ✅ Clear, unabbreviated names
 - ✅ Separate test and source directories
 - ✅ Remove dead code, don't comment it out
-- ✅ Cite IRH v21.1 Manuscript sections in all implementations
+- ✅ Cite IRH v21.4 Manuscript sections in all implementations
 
 ---
 
@@ -1850,6 +1897,358 @@ If audit is skipped:
 - Report: `.github/COMPREHENSIVE_TECHNICAL_AUDIT.md`
 - Result: ✅ APPROVED
 - Next Phase: READY TO BEGIN (Topological Complexity Operator)
+
+---
+
+## 📋 TRANSIENT SESSION-TO-SESSION INSTRUCTIONS
+
+**Purpose:** This section contains active instructions for the current and upcoming development sessions. Updated after each session.
+
+**Last Updated:** December 26, 2025
+
+### Current Session: Documentation Consolidation & Repository Cleanup
+
+**Objective:** Consolidate all .github/*.md files into copilot-instructions.md and establish single source of truth
+
+**Status:** ✅ COMPLETE (December 26, 2025)
+
+**Tasks:**
+- [x] Read and assimilate all .github/*.md mandates and policies
+- [x] Add mandatory documentation policy to copilot-instructions.md
+- [x] Consolidate THEORETICAL_CORRESPONDENCE_MANDATE.md content
+- [x] Consolidate MANDATORY_AUDIT_PROTOCOL.md content (already summarized above)
+- [x] Consolidate COMPLIANCE_SYSTEM_README.md content
+- [x] Update README.md with current status and correct manuscript references (verified already correct)
+- [x] Archive redundant .md files from .github/ to .github/archive_dec2025/
+- [x] Update workflow files to reference copilot-instructions.md
+- [x] Move MATHEMATICIAN_AGENT_GUIDE.md to docs/
+
+### Next Session: Repository-Wide Cleanup
+
+**Objective:** Apply same organizational principles to all directories
+
+**Priority Areas:**
+1. **docs/** - Consolidate overlapping documentation, ensure consistency
+2. **notebooks/** - Verify all references are current, update outdated citations
+3. **src/** - Ensure all modules follow documented patterns
+4. **tests/** - Verify test organization mirrors src/ structure
+
+**Detailed Cleanup Plan:**
+
+#### docs/ Directory Cleanup
+- [ ] Review all .md files for redundancy
+- [ ] Consolidate overlapping content
+- [ ] Ensure all references point to IRH v21.4 (not v21.4 or other versions)
+- [ ] Verify cross-references between docs are valid
+- [ ] Update dates to reflect actual completion (December 2025, not future dates)
+- [ ] Move or archive outdated documents
+
+#### notebooks/ Directory Verification
+- [ ] Check all notebook cells for outdated manuscript references
+- [ ] Update import statements if module paths changed
+- [ ] Verify all notebooks run successfully
+- [ ] Update README or index if notebooks were added/removed
+- [ ] Ensure consistency with main documentation
+
+#### Root Directory Organization
+- [ ] Review all .md files in root (CONTRIBUTING.md, THEORETICAL_CORRESPONDENCE.md, etc.)
+- [ ] Ensure they reference copilot-instructions.md where appropriate
+- [ ] Remove or archive any temporary/outdated files
+- [ ] Verify all cross-references
+
+#### General Cleanup Standards
+**File Placement Rules:**
+- Theory manuscripts → root directory (canonical copies)
+- Theory documentation → docs/manuscripts/
+- Implementation docs → docs/
+- API reference → docs/api_reference/
+- Agent guides → docs/ (not .github/)
+- Temporary files → NOT committed (.gitignore)
+- Historical archives → archives/ or .github/archive_*/
+
+**Naming Conventions:**
+- Use descriptive names (no abbreviations unless standard)
+- Include version in filename if version-specific
+- Use underscores for multi-word names
+- Include dates for time-sensitive docs (YYYY-MM-DD format)
+
+**Date Accuracy:**
+- Use current date (December 2025) for current work
+- Don't project into future unless clearly marked as "target" or "planned"
+- Historical dates should be accurate
+
+**Cross-Reference Validation:**
+- All internal links must point to existing files
+- All section references must point to existing sections
+- Broken links are unacceptable
+
+**Standards to Apply:**
+- Single source of truth for each type of information
+- Clear file naming conventions
+- Logical directory structure
+- Up-to-date cross-references
+- Accurate dates (December 2025, not future projections)
+
+---
+
+## 🎯 SEMI-TRANSIENT PHASE TRACKING
+
+**Purpose:** Track multi-session phases until completion, then archive to permanent records
+
+**Current Phase Set:** Repository Maintenance & Documentation Synchronization
+
+### Phase A: Documentation Consolidation ✅ COMPLETE
+**Completed:** December 26, 2025
+
+- [x] Identified all .github/*.md files requiring consolidation
+- [x] Established single source of truth mandate
+- [x] Created transient session tracking system
+- [x] Defined update protocol for future sessions
+
+### Phase B: .github Folder Cleanup ✅ COMPLETE
+**Completed:** December 26, 2025
+
+**Status:**
+- ✅ Consolidated mandate/compliance documents into copilot-instructions.md
+- ✅ Preserved agent configurations and workflow files
+- ✅ Archived redundant documentation files to .github/archive_dec2025/
+- ✅ Updated workflows to reference copilot-instructions.md
+- ✅ Fixed all v21.4 → v21.1 references
+
+**Files Processed:**
+- [x] THEORETICAL_CORRESPONDENCE_MANDATE.md → Core principles consolidated
+- [x] COMPLIANCE_SYSTEM_README.md → Overview integrated
+- [x] COMPREHENSIVE_AUDIT_REPORT.md → Action items extracted
+- [x] COMPREHENSIVE_TECHNICAL_AUDIT.md → Already summarized in audit section
+- [x] PHASE_2_STATUS.md → Archived (historical)
+- [x] PHASE_2_USER_SUMMARY.md → Archived (historical)
+- [x] COMPLIANCE_IMPLEMENTATION_COMPLETE.md → Archived (historical)
+- [x] COMPLIANCE_QUICK_REFERENCE.md → Key points integrated
+- [x] MATHEMATICIAN_AGENT_GUIDE.md → Moved to docs/
+
+### Phase C: User Documentation Update ✅ COMPLETE
+**Completed:** December 26, 2025
+
+**Tasks:**
+- [x] README.md already reflects current repository status (verified)
+- [x] All manuscript references use v21.1 (verified)
+- [x] Implementation status up-to-date (970+ tests, all phases complete)
+- [x] All documentation cross-references validated
+- [x] Citation information current
+
+### Phase D: Workflow Synchronization ✅ COMPLETE
+**Completed:** December 26, 2025
+
+**Tasks:**
+- [x] Updated compliance_check.yml to reference copilot-instructions.md
+- [x] Fixed all v21.4 → v21.1 references in workflows
+- [x] Updated documentation references in workflows
+- [x] Verified workflow structure with new documentation layout
+
+### Phase E: Repository-Wide Cleanup ⏳ PLANNED
+**Target Completion:** December 27-28, 2025
+
+**Scope:** Apply organizational principles to remaining directories (docs/, notebooks/, src/, tests/)
+
+---
+
+## 🔒 THEORETICAL CORRESPONDENCE MANDATE
+
+**Status:** PERMANENT, NON-NEGOTIABLE  
+**Authority:** The Mathematical Sentinel  
+**Version:** IRH v21.4 Correspondence Protocol v1.0  
+**Originally From:** `.github/THEORETICAL_CORRESPONDENCE_MANDATE.md` (NOW CONSOLIDATED HERE)
+
+### The Sentinel's Creed
+
+> **"A computational engine of reality does not pretend. It computes truth from first principles with crystalline transparency, or it does not compute at all."**
+
+### Core Principle
+
+The IRH computational framework must be a **faithful, structure-preserving isomorphism** of the theoretical edifice articulated in:
+- **IRH v21.4 Manuscript Part 1** (`Intrinsic-Resonance-Holography-21.4-Part1.md`)
+- **IRH v21.4 Manuscript Part 2** (`Intrinsic-Resonance-Holography-21.4-Part2.md`)
+
+Every equation, constant, and algorithmic step must **transparently and completely** implement the full theoretical formalism **without simplification, approximation, or omission** unless explicitly justified and documented.
+
+### Prohibited Practices (Zero Tolerance)
+
+#### 1. Formula Oversimplification
+❌ **FORBIDDEN:** Removing terms from equations without rigorous justification  
+✅ **REQUIRED:** Complete formulas with all non-perturbative corrections
+
+#### 2. Hardcoded Constants Without Derivation
+❌ **FORBIDDEN:** `ALPHA_INVERSE = 137.035999084  # Where does this come from?`  
+✅ **REQUIRED:** Constants MUST be computed from first principles with full provenance
+
+#### 3. Black Box Computations
+❌ **FORBIDDEN:** Opaque function calls without theoretical context  
+✅ **REQUIRED:** Transparency Engine logs emitting step-by-step derivations
+
+#### 4. Missing Theoretical References
+**MANDATORY:** Every function MUST cite:
+1. Manuscript section (e.g., "IRH v21.4 Part 1 §3.2.2")
+2. Equation number (e.g., "Eq. 3.4")
+3. Appendix details if applicable (e.g., "Appendix E.4.1")
+
+#### 5. Unjustified Approximations
+**If approximation is necessary, MUST include:**
+1. WHY approximation is required
+2. Error quantification: O(ε^n) where ε << 1
+3. Convergence proof
+4. Regime where approximation breaks down
+
+### Mandatory Code Standards
+
+#### Function Documentation Template
+```python
+def function_name(params) -> ReturnType:
+    """
+    One-line summary of what this implements.
+    
+    Theoretical Reference:
+        IRH v21.4 Part [1|2], §[section], Eq. [number]
+        [Optional: Appendix [letter].[subsection]]
+    
+    Mathematical Foundation:
+        [Detailed explanation of the theoretical origin]
+        [Why this formula is correct]
+        [What each term represents physically]
+    
+    Formula (Complete):
+        [Full equation in LaTeX/Unicode notation]
+        [No simplifications unless proven equivalent]
+    
+    Parameters
+    ----------
+    param : type
+        Physical meaning and units
+        
+    Returns
+    -------
+    ReturnType
+        What is computed and why it matters
+        
+    Notes
+    -----
+    - Any approximations MUST be justified here
+    - Error bounds MUST be stated
+    - Non-perturbative corrections MUST be included
+    
+    Examples
+    --------
+    >>> # Demonstrate usage with theoretical verification
+    >>> result = function_name(test_input)
+    >>> assert result.validates_against_known_limit()
+    """
+```
+
+#### Transparency Requirements
+Every computation MUST emit:
+```python
+{
+    "value": computed_value,
+    "uncertainty": numerical_error_bound,
+    "theoretical_reference": "IRH v21.4 Part X §Y.Z, Eq. N",
+    "formula": "LaTeX representation of full formula",
+    "components": {
+        "term_1": value_1,
+        "term_2": value_2,
+        # ... all terms individually
+    },
+    "provenance": {
+        "input_sources": ["where data came from"],
+        "computational_method": "algorithm used",
+        "convergence_status": True/False,
+        "numerical_precision": float
+    },
+    "validation": {
+        "known_limits_checked": ["limit_1", "limit_2"],
+        "dimensional_consistency": True,
+        "gauge_invariance": True  # if applicable
+    }
+}
+```
+
+### Pre-Commit Enforcement Checklist
+
+Before ANY code commit, verify:
+- [ ] All formulas cite IRH v21.4 manuscript (Part 1 or 2)
+- [ ] No simplified equations without justification
+- [ ] Transparency Engine logs all computations
+- [ ] Hardcoded constants are COMPUTED, not assigned
+- [ ] Non-perturbative corrections included
+- [ ] Dimensional consistency verified
+- [ ] Known limits checked
+- [ ] Uncertainty propagation tracked
+
+### Code Review Rejection Criteria
+
+Code WILL BE REJECTED if:
+1. Missing manuscript citations
+2. Simplified formulas without error bounds
+3. Black box computations without transparency logs
+4. Hardcoded constants without derivation
+5. Missing non-perturbative corrections
+6. Unjustified approximations
+
+---
+
+## 📊 CURRENT REPOSITORY STATUS
+
+**Last Updated:** December 26, 2025
+
+### Implementation Completeness
+
+**Theory Coverage:** 100% (17/17 critical equations implemented)  
+**Test Count:** 970+ tests passing  
+**Phases Complete:** All 6 core phases + Enhancement + Optimization Tiers + Web/Desktop  
+
+| Phase | Focus | Tests | Status |
+|-------|-------|-------|--------|
+| **Phase I** | Core RG Infrastructure | 74+ | ✅ Complete |
+| **Phase II** | Emergent Geometry | 33+ | ✅ Complete |
+| **Phase III** | Topological Physics | 53+ | ✅ Complete |
+| **Phase IV** | Standard Model | 65+ | ✅ Complete |
+| **Phase V** | Cosmology & Predictions | 51+ | ✅ Complete |
+| **Phase VI** | Desktop Application | 36+ | ✅ Complete |
+| **Enhancement** | Visualization, Reporting | 101+ | ✅ Complete |
+| **Tier 3** | Performance (8 phases) | 254+ | ✅ Complete |
+| **Tier 4.1-4.2** | Web + Cloud | 13+ | ✅ Complete |
+| **Tier 4.3** | ML Surrogate Models | 31+ | ✅ Complete |
+| **Tier 4.4** | Notebook 05 Corrections | N/A | ✅ Complete |
+
+### Known Issues Requiring Resolution
+
+**CRITICAL-1:** Fermion Mass Formula - Missing Yukawa RG Running (𝓡_Y factor)  
+**CRITICAL-2:** Alpha Inverse - Missing non-perturbative corrections (𝓖_QNCD, 𝓥, log series)  
+**CRITICAL-3:** Beta Functions - Only one-loop, need full Wetterich equation  
+**CRITICAL-4:** Topological Complexity - Hardcoded table instead of dynamical solver  
+
+*See original COMPREHENSIVE_AUDIT_REPORT.md for full details (now archived)*
+
+### Manuscript References
+
+**PRIMARY SOURCES:**
+- IRH v21.4 Manuscript Part 1: `Intrinsic-Resonance-Holography-21.4-Part1.md`
+- IRH v21.4 Manuscript Part 2: `Intrinsic-Resonance-Holography-21.4-Part2.md`
+
+**NOTE:** All references to "v21.4" in older documentation are INCORRECT and should be updated to "v21.1"
+
+### Archived Documentation (December 26, 2025)
+
+The following files were consolidated into this document and archived to `.github/archive_dec2025/`:
+- `THEORETICAL_CORRESPONDENCE_MANDATE.md` - Core content integrated into "Theoretical Correspondence Mandate" section
+- `MANDATORY_AUDIT_PROTOCOL.md` - Core content already present in "Mandatory Audit Protocol" section
+- `COMPLIANCE_SYSTEM_README.md` - Overview content distributed throughout this document
+- `COMPREHENSIVE_AUDIT_REPORT.md` - Action items extracted, findings documented in "Current Repository Status"
+- `COMPREHENSIVE_TECHNICAL_AUDIT.md` - Latest audit findings retained in "Mandatory Audit Protocol" section
+- `COMPLIANCE_IMPLEMENTATION_COMPLETE.md` - Historical status, archived
+- `COMPLIANCE_QUICK_REFERENCE.md` - Key points integrated throughout
+- `PHASE_2_STATUS.md` - Historical phase tracking, archived
+- `PHASE_2_USER_SUMMARY.md` - Historical summary, archived
+
+**Note:** `MATHEMATICIAN_AGENT_GUIDE.md` was moved to `docs/` as it remains useful reference documentation.
 
 ---
 

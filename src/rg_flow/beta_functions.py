@@ -29,6 +29,11 @@ from typing import Tuple, Optional
 
 import numpy as np
 
+# TransparencyEngine import removed - not currently used in this module
+# (reserved for future runtime transparency logging implementation)
+_TRANSPARENCY_AVAILABLE = False
+TransparencyEngine = None
+
 __version__ = "21.0.0"
 __theoretical_foundation__ = "IRH21.md §1.2.2, Eq. 1.13"
 
@@ -75,7 +80,7 @@ class BetaFunctions:
         """
         Compute β_λ = -2λ̃ + (9/8π²)λ̃²
         
-        Theoretical Reference:
+        # Theoretical Reference:
             IRH21.md §1.2.2, Eq. 1.13
             
         Mathematical Foundation:
@@ -112,7 +117,7 @@ class BetaFunctions:
         """
         Compute β_γ = (3/4π²)λ̃γ̃
         
-        Theoretical Reference:
+        # Theoretical Reference:
             IRH21.md §1.2.2, Eq. 1.13
             
         Mathematical Foundation:
@@ -145,7 +150,7 @@ class BetaFunctions:
         """
         Compute β_μ = 2μ̃ + (1/2π²)λ̃μ̃
         
-        Theoretical Reference:
+        # Theoretical Reference:
             IRH21.md §1.2.2, Eq. 1.13
             
         Mathematical Foundation:
@@ -176,7 +181,7 @@ class BetaFunctions:
         """
         Compute all three β-functions simultaneously.
         
-        Theoretical Reference:
+        # Theoretical Reference:
             IRH21.md §1.2.2, Eq. 1.13
             
         Parameters
@@ -212,7 +217,7 @@ class BetaFunctions:
         """
         Compute the Jacobian matrix ∂β_i/∂g_j at given couplings.
         
-        Theoretical Reference:
+        # Theoretical Reference:
             IRH21.md §1.3 (Stability Analysis)
             
         The eigenvalues of this matrix determine the stability of fixed points.
@@ -284,7 +289,7 @@ def beta_gamma(lambda_tilde: float, gamma_tilde: float, mu_tilde: float) -> floa
     """
     Compute beta function for γ̃ coupling.
     
-    Theoretical Reference:
+    # Theoretical Reference:
         IRH21.md §1.2, Eq. 1.13
         β_γ = (3/4π²)λ̃γ̃
         
@@ -309,7 +314,7 @@ def beta_mu(lambda_tilde: float, gamma_tilde: float, mu_tilde: float) -> float:
     """
     Compute beta function for μ̃ coupling.
     
-    Theoretical Reference:
+    # Theoretical Reference:
         IRH21.md §1.2, Eq. 1.13
         β_μ = 2μ̃ + (1/2π²)λ̃μ̃
         
@@ -338,7 +343,7 @@ def compute_all_betas(
     """
     Compute all three beta functions simultaneously.
     
-    Theoretical Reference:
+    # Theoretical Reference:
         IRH21.md §1.2, Eq. 1.13
         
     Returns

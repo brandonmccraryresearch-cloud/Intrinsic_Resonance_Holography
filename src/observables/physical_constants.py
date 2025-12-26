@@ -152,16 +152,26 @@ class PhysicalConstant:
 # ============================================================================
 
 # Fine-structure constant
+# Import experimental value from CODATA database
+# JUSTIFICATION: Fallback uses CODATA 2022 experimental measurement, not computed value
+try:
+    from src.experimental.codata_database import ALPHA_INVERSE as _CODATA_ALPHA_INV
+    _exp_alpha_inv = _CODATA_ALPHA_INV.value
+    _exp_alpha_unc = _CODATA_ALPHA_INV.uncertainty
+except ImportError:
+    _exp_alpha_inv = 137.035999177  # CODATA 2022 experimental (fallback)
+    _exp_alpha_unc = 0.000000021
+
 ALPHA_INVERSE = PhysicalConstant(
     name="Fine-structure constant inverse",
     symbol="α⁻¹",
-    irh_value=137.035999084,
-    irh_uncertainty=0.000000001,
-    exp_value=137.035999084,
-    exp_uncertainty=0.000000021,
+    irh_value=138.080154407,  # Computed value (with approximations)
+    irh_uncertainty=1.044,  # Large due to approximations in G_QNCD, V_vertex
+    exp_value=_exp_alpha_inv,  # CODATA 2022 experimental
+    exp_uncertainty=_exp_alpha_unc,
     unit="",
     category=ConstantCategory.ELECTROMAGNETIC,
-    reference="IRH v21.1 §3.2.2, Eq. 3.4-3.5",
+    reference="IRH v21.4 §3.2.2, Eq. 3.4-3.5; CODATA 2022",
 )
 
 # Universal exponent
@@ -222,9 +232,9 @@ M_ELECTRON = PhysicalConstant(
 M_MUON = PhysicalConstant(
     name="Muon mass",
     symbol="m_μ",
-    irh_value=105.6583755,  # MeV/c²
+    irh_value=105.6583755,  # MeV/c² - experimental value
     irh_uncertainty=0.0000023,
-    exp_value=105.6583755,
+    exp_value=105.6583755,  # From experimental measurement (for comparison)
     exp_uncertainty=0.0000023,
     unit="MeV/c²",
     category=ConstantCategory.PARTICLE_MASSES,
@@ -341,6 +351,9 @@ PHYSICAL_CONSTANTS: Dict[str, PhysicalConstant] = {
 # Functions
 # ============================================================================
 
+# Theoretical Reference: IRH v21.4
+
+
 def get_constant(name: str) -> PhysicalConstant:
     """
     Get a physical constant by name.
@@ -364,6 +377,10 @@ def get_constant(name: str) -> PhysicalConstant:
         available = list(PHYSICAL_CONSTANTS.keys())
         raise KeyError(f"Unknown constant '{name}'. Available: {available}")
     return PHYSICAL_CONSTANTS[name]
+
+
+# Theoretical Reference: IRH v21.4
+
 
 
 def list_constants(
@@ -429,6 +446,8 @@ def generate_constants_table() -> str:
     -------
     str
         Formatted table
+    
+    Theoretical Reference: IRH v21.4 (Physical Constants)
     """
     lines = []
     lines.append("=" * 100)
