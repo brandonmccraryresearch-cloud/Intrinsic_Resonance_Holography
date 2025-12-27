@@ -260,9 +260,9 @@ def compute_fine_structure_constant(
     
     # Log result with transparency engine
     engine.result("α⁻¹", alpha_inv, uncertainty=uncertainty)
-    engine.validation(
+    engine.validate(
         f"Deviation from experiment: {sigma_dev:.1f}σ",
-        passed=(abs(sigma_dev) < 100)  # Relaxed tolerance due to approximations
+        passed=(abs(sigma_dev) < 100),  # Relaxed tolerance due to approximations
     )
     
     return AlphaInverseResult(
