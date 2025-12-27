@@ -78,7 +78,22 @@ class FailureContext:
         return asdict(self)
     
     def to_json(self, indent: int = 2) -> str:
-        """Convert to JSON string."""
+        """
+        Convert to JSON string.
+        
+        Theoretical Reference:
+            IRH v21.4 Computational Transparency Mandate
+        
+        Parameters
+        ----------
+        indent : int, optional
+            JSON indentation level (default: 2)
+        
+        Returns
+        -------
+        str
+            JSON-formatted string representation
+        """
         return json.dumps(self.to_dict(), indent=indent, default=str)
 
 
@@ -110,6 +125,21 @@ class FailureLogger:
         auto_push: bool = False,
         verbose: bool = True
     ):
+        """
+        Initialize failure logger.
+        
+        Theoretical Reference:
+            IRH v21.4 Computational Transparency Mandate
+        
+        Parameters
+        ----------
+        output_dir : str or Path, optional
+            Directory for failure logs (default: "io/failures")
+        auto_push : bool, optional
+            Whether to automatically push failures to git (default: False)
+        verbose : bool, optional
+            Whether to print failure summaries (default: True)
+        """
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.auto_push = auto_push
@@ -331,6 +361,19 @@ class FailureAnalyzer:
         failure_log_path: str | Path,
         use_gemini: bool = True
     ):
+        """
+        Initialize failure analyzer.
+        
+        Theoretical Reference:
+            IRH v21.4 Computational Transparency Mandate
+        
+        Parameters
+        ----------
+        failure_log_path : str or Path
+            Path to failure log JSON file
+        use_gemini : bool, optional
+            Whether to use Gemini API (default: True, requires Colab)
+        """
         self.failure_log_path = Path(failure_log_path)
         self.use_gemini = use_gemini and self._is_colab()
         
@@ -346,6 +389,9 @@ class FailureAnalyzer:
     def analyze(self) -> Dict[str, Any]:
         """
         Analyze failure and generate comprehensive report.
+        
+        Theoretical Reference:
+            IRH v21.4 Computational Transparency Mandate
         
         Returns
         -------
@@ -436,6 +482,9 @@ Format your response as a numbered list of concrete suggestions.
     def generate_refactoring_code(self) -> str:
         """
         Generate example refactored code based on suggestions.
+        
+        Theoretical Reference:
+            IRH v21.4 Computational Transparency Mandate
         
         Returns
         -------
@@ -562,6 +611,9 @@ def analyze_latest_failure(
     """
     Analyze the most recent failure.
     
+    Theoretical Reference:
+        IRH v21.4 Computational Transparency Mandate
+    
     Parameters
     ----------
     failure_dir : str or Path
@@ -603,6 +655,12 @@ if __name__ == "__main__":
     try:
         # Simulate a computation that fails
         def failing_computation():
+            """
+            Example computation that fails for testing.
+            
+            Theoretical Reference:
+                IRH v21.4 Computational Transparency Mandate - Testing infrastructure
+            """
             raise ValueError("RG flow integration failed to converge")
         
         failing_computation()
