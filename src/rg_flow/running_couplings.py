@@ -82,24 +82,15 @@ class RunningCouplings:
     gamma_k: float
     mu_k: float
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def couplings(self) -> Tuple[float, float, float]:
         """Return couplings as tuple."""
         return (self.lambda_k, self.gamma_k, self.mu_k)
     
-    # Theoretical Reference: IRH v21.4
     def t(self) -> float:
         """Return RG time t = ln(k/k_0)."""
         return math.log(self.k / K_0)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def distance_to_fixed_point(self) -> float:
-        
-        # Theoretical Reference: IRH v21.4
         """Compute distance to Cosmic Fixed Point."""
         delta = np.array([
             self.lambda_k - LAMBDA_STAR,
@@ -108,7 +99,6 @@ class RunningCouplings:
         ])
         return np.linalg.norm(delta)
     
-    # Theoretical Reference: IRH v21.4
     def is_near_fixed_point(self, tolerance: float = 1.0) -> bool:
         """Check if couplings are near the fixed point."""
         return self.distance_to_fixed_point() < tolerance
@@ -116,8 +106,6 @@ class RunningCouplings:
 
 @dataclass
 class CouplingTrajectory:
-    
-    # Theoretical Reference: IRH v21.4
     """
     Complete RG trajectory of couplings.
     
@@ -148,9 +136,6 @@ class CouplingTrajectory:
     def __len__(self) -> int:
         return len(self.t_values)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def initial_couplings(self) -> RunningCouplings:
         """Get initial (UV) couplings."""
         return RunningCouplings(
@@ -160,9 +145,6 @@ class CouplingTrajectory:
             mu_k=self.mu_trajectory[0]
         )
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def final_couplings(self) -> RunningCouplings:
         """Get final (IR) couplings."""
         return RunningCouplings(
@@ -171,9 +153,6 @@ class CouplingTrajectory:
             gamma_k=self.gamma_trajectory[-1],
             mu_k=self.mu_trajectory[-1]
         )
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def at_scale(self, k: float) -> RunningCouplings:
         """
@@ -298,9 +277,6 @@ def integrate_running_couplings(
     """
     beta = BetaFunctions()
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def flow_equations(t, y):
         lambda_t, gamma_t, mu_t = y
         return [
@@ -363,7 +339,7 @@ def running_alpha_inverse(k: float) -> float:
         
     Notes
     -----
-    At low energies (k → 0), α⁻¹ → 137.035999084  # From experimental measurement (for comparison)
+    At low energies (k → 0), α⁻¹ → 137.035999084
     """
     # Get running couplings
     couplings = compute_running_couplings(k)
@@ -373,7 +349,7 @@ def running_alpha_inverse(k: float) -> float:
     lambda_k = couplings.lambda_k
     
     # Base value from fixed point
-    alpha_inv_star = 137.035999084  # From experimental measurement (for comparison)
+    alpha_inv_star = 137.035999084
     
     # Scale dependence
     delta_lambda = lambda_k - LAMBDA_STAR
@@ -413,10 +389,6 @@ def running_C_H(k: float) -> float:
     return C_H
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def coupling_at_energy_scale(
     energy_GeV: float,
     coupling_name: str = 'lambda',
@@ -454,9 +426,6 @@ def coupling_at_energy_scale(
 # ============================================================================
 # Analysis Functions
 # ============================================================================
-
-# Theoretical Reference: IRH v21.4
-
 
 def analyze_running(
     k_range: Tuple[float, float] = (K_IR, K_UV),

@@ -22,10 +22,6 @@ from scipy import special
 __version__ = "21.0.0"
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def bessel_j(n: int, x: float) -> float:
     """
     Bessel function of the first kind J_n(x).
@@ -43,10 +39,6 @@ def bessel_j(n: int, x: float) -> float:
         J_n(x)
     """
     return float(special.jv(n, x))
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def hypergeometric_2f1(
@@ -71,10 +63,6 @@ def hypergeometric_2f1(
         ₂F₁(a, b; c; z)
     """
     return complex(special.hyp2f1(a, b, c, z))
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def wigner_d_matrix(
@@ -173,10 +161,6 @@ def wigner_d_matrix(
     return float(prefactor * trig * P)
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def wigner_D_matrix(
     j: float,
     m: int,
@@ -207,10 +191,6 @@ def wigner_D_matrix(
     d = wigner_d_matrix(j, m, mp, beta)
     phase = np.exp(-1j * (m * alpha + mp * gamma))
     return complex(phase * d)
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def clebsch_gordan(
@@ -255,10 +235,6 @@ def clebsch_gordan(
         return sign * np.sqrt(2 * j + 1) * three_j
     except:
         return 0.0
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def spherical_harmonic(

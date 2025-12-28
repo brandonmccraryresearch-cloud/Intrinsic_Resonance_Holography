@@ -109,9 +109,6 @@ class IRHLogger:
     
     _instance: Optional['IRHLogger'] = None
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def __init__(
         self,
         name: str = "IRH",
@@ -139,15 +136,12 @@ class IRHLogger:
         self._log_history: List[Dict[str, Any]] = []
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
-
     def get_instance(cls) -> 'IRHLogger':
         """Get singleton logger instance."""
         if cls._instance is None:
             cls._instance = cls()
         return cls._instance
     
-    # Theoretical Reference: IRH v21.4
     def log(
         self,
         level: IRHLogLevel,
@@ -182,17 +176,12 @@ class IRHLogger:
         
         self.logger.info(formatted)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def init(
         self,
         message: str,
         theoretical_ref: Optional[TheoreticalReference] = None,
         **kwargs
     ):
-        
-        # Theoretical Reference: IRH v21.4
         """Log initialization event."""
         context = None
         if theoretical_ref:
@@ -202,9 +191,6 @@ class IRHLogger:
                 **kwargs
             )
         self.log(IRHLogLevel.INIT, message, context)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def exec(
         self,
@@ -222,9 +208,6 @@ class IRHLogger:
         )
         self.log(IRHLogLevel.EXEC, f"Computing {operation}", context)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def verify(
         self,
         test_name: str,
@@ -241,9 +224,6 @@ class IRHLogger:
             **kwargs
         )
         self.log(IRHLogLevel.VERIFY, f"Verification: {test_name}", context)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def rg_flow_start(
         self,
@@ -271,9 +251,6 @@ class IRHLogger:
                 }
             )
         )
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def rg_step(
         self,
@@ -304,9 +281,6 @@ class IRHLogger:
             )
         )
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def result(
         self,
         name: str,
@@ -335,8 +309,6 @@ class IRHLogger:
         self.log(IRHLogLevel.RESULT, msg, context)
     
     @contextmanager
-    # Theoretical Reference: IRH v21.4
-
     def operation(
         self,
         name: str,
@@ -358,33 +330,21 @@ class IRHLogger:
             self._context_stack.pop()
             self.log(IRHLogLevel.EXEC, f"End: {name}", context)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_history(self) -> List[Dict[str, Any]]:
         """Get log history for analysis."""
         return self._log_history.copy()
     
-    # Theoretical Reference: IRH v21.4
     def clear_history(self):
         """Clear log history."""
         self._log_history.clear()
 
 
 class IRHFormatter(logging.Formatter):
-    
-    # Theoretical Reference: IRH v21.4
     """Custom formatter for IRH logs."""
     
     def __init__(self, include_timestamp: bool = True):
-        """
-        # Theoretical Reference: IRH v21.4
-        """
         self.include_timestamp = include_timestamp
         super().__init__()
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def format(self, record: logging.LogRecord) -> str:
         if self.include_timestamp:
@@ -415,9 +375,6 @@ def instrumented(
     """
     import functools
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -434,16 +391,11 @@ def instrumented(
 # =============================================================================
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def get_logger() -> IRHLogger:
     """Get the singleton IRH logger instance."""
     return IRHLogger.get_instance()
 
 
-# Theoretical Reference: IRH v21.4
 def configure_logging(
     level: int = logging.INFO,
     stream: Any = sys.stdout,

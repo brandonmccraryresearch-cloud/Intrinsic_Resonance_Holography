@@ -22,10 +22,6 @@ from scipy import optimize
 __version__ = "21.0.0"
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def find_fixed_point_newton(
     f: Callable[[np.ndarray], np.ndarray],
     initial_guess: np.ndarray,
@@ -56,8 +52,6 @@ def find_fixed_point_newton(
     Dict
         Fixed point result
     """
-    # Theoretical Reference: IRH v21.4
-
     def g(x):
         return f(x) - x
     
@@ -105,10 +99,6 @@ def find_fixed_point_newton(
     }
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def minimize_functional(
     functional: Callable[[np.ndarray], float],
     initial_guess: np.ndarray,
@@ -152,10 +142,6 @@ def minimize_functional(
         'iterations': result.nit if hasattr(result, 'nit') else None,
         'message': result.message,
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def root_find(

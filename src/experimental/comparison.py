@@ -14,7 +14,7 @@ IRH predictions and experimental values. It supports:
 
 Example:
     >>> from src.experimental.comparison import compare_single, generate_comparison_table
-    >>> result = compare_single(137.035999084, 'alpha_inverse', uncertainty=1e-9)  # From experimental measurement (for comparison)
+    >>> result = compare_single(137.035999084, 'alpha_inverse', uncertainty=1e-9)
     >>> print(f"σ deviation: {result.sigma_deviation:.2f}")
 
 Authors: IRH Computational Framework Team
@@ -92,9 +92,6 @@ class ComparisonResult:
     exp_source: str = ""
     notes: str = ""
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def is_consistent(self, n_sigma: float = 2.0) -> bool:
         """Check if consistent within n_sigma."""
         return self.sigma_deviation <= n_sigma
@@ -116,12 +113,7 @@ class ComparisonResult:
             'consistent_5sigma': self.is_consistent(5.0),
         }
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def to_latex_row(self) -> str:
-        
-        # Theoretical Reference: IRH v21.4
         """Generate LaTeX table row."""
         status_color = {
             ComparisonStatus.EXCELLENT: r'\cellcolor{green!20}',
@@ -184,7 +176,7 @@ def compare_single(
         
     Examples
     --------
-    >>> result = compare_single(137.035999084, 'alpha_inverse', 1e-9, 'Eq. 3.4-3.5')  # From experimental measurement (for comparison)
+    >>> result = compare_single(137.035999084, 'alpha_inverse', 1e-9, 'Eq. 3.4-3.5')
     >>> print(f"α⁻¹: {result.sigma_deviation:.2f}σ deviation")
     α⁻¹: 0.00σ deviation
     """
@@ -218,10 +210,6 @@ def compare_single(
         theoretical_reference=theoretical_reference,
         exp_source=exp.source,
     )
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def compare_irh_predictions() -> List[ComparisonResult]:
@@ -275,13 +263,9 @@ class MultiComparisonResult:
     p_value: float
     reduced_chi_squared: float
     
-    # Theoretical Reference: IRH v21.4
     def is_consistent(self, significance: float = 0.05) -> bool:
         """Check if model is consistent at given significance level."""
         return self.p_value > significance
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def summary(self) -> str:
         """Generate text summary."""
@@ -296,10 +280,6 @@ class MultiComparisonResult:
             f"p-value = {self.p_value:.4f}\n"
             f"Status: {n_excellent} excellent, {n_good} good, {n_tension} in tension"
         )
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def chi_squared_test(comparisons: List[ComparisonResult]) -> MultiComparisonResult:
@@ -345,10 +325,6 @@ def chi_squared_test(comparisons: List[ComparisonResult]) -> MultiComparisonResu
         p_value=p_value,
         reduced_chi_squared=reduced,
     )
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def generate_comparison_table(
@@ -468,10 +444,6 @@ def _html_table(comparisons: List[ComparisonResult]) -> str:
 </tbody>
 </table>
 """
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def full_irh_comparison_report() -> Dict[str, Any]:

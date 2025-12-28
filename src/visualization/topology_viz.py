@@ -91,7 +91,7 @@ FERMION_K_VALUES = {
 FERMION_MASSES_EXP = {
     'electron': 0.000511,
     'muon': 0.106,
-    'tau': 1.777,  # From experimental measurement (for comparison)
+    'tau': 1.777,
     'up': 0.0022,
     'charm': 1.28,
     'top': 173.0,
@@ -121,9 +121,6 @@ class TopologyVisualizer:
     def __post_init__(self):
         if not MATPLOTLIB_AVAILABLE:
             raise ImportError("matplotlib is required for TopologyVisualizer")
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def plot_betti_numbers(
         self,
@@ -206,9 +203,6 @@ class TopologyVisualizer:
         
         return fig, ax
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def plot_instanton_number(
         self,
         show_generations: bool = True,
@@ -290,9 +284,6 @@ class TopologyVisualizer:
         )
         
         return fig, ax
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def plot_vwp_configuration(
         self,
@@ -458,9 +449,6 @@ class TopologyVisualizer:
         
         return fig, ax
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def plot_mass_hierarchy(
         self,
         fermion_type: str = 'leptons',
@@ -536,7 +524,6 @@ class TopologyVisualizer:
 # Module-Level Convenience Functions
 # =============================================================================
 
-# Theoretical Reference: IRH v21.4 Part 2, Appendix D.2
 def plot_vwp_configuration(fermion: str = 'electron', **kwargs) -> Tuple[Figure, Axes3D]:
     """
     Plot VWP configuration for a fermion.
@@ -546,10 +533,6 @@ def plot_vwp_configuration(fermion: str = 'electron', **kwargs) -> Tuple[Figure,
     """
     viz = TopologyVisualizer()
     return viz.plot_vwp_configuration(fermion=fermion, **kwargs)
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def plot_instanton_charge(**kwargs) -> Tuple[Figure, Axes]:
@@ -562,7 +545,6 @@ def plot_instanton_charge(**kwargs) -> Tuple[Figure, Axes]:
     viz = TopologyVisualizer()
     return viz.plot_instanton_number(**kwargs)
 
- # Theoretical Reference: IRH v21.4 Part 2, Appendix D.1
 
 def plot_betti_numbers(**kwargs) -> Tuple[Figure, Axes]:
     """

@@ -91,8 +91,6 @@ class StatisticalComparison:
     result: ComparisonResult
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
-
     def from_constant(cls, constant: PhysicalConstant) -> 'StatisticalComparison':
         """Create comparison from physical constant."""
         sigma = constant.sigma_deviation
@@ -171,9 +169,6 @@ class FalsificationTest:
     experiment: str
     status: FalsificationStatus
     reference: str
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def would_be_falsified(self, measured_value: float, uncertainty: float) -> bool:
         """
@@ -274,9 +269,6 @@ FALSIFICATION_TESTS: Dict[str, FalsificationTest] = {
 # Core Functions
 # ============================================================================
 
-# Theoretical Reference: IRH v21.4
-
-
 def compare_constant(name: str) -> StatisticalComparison:
     """
     Perform statistical comparison for a single constant.
@@ -357,8 +349,6 @@ def get_falsification_tests() -> List[FalsificationTest]:
     -------
     List[FalsificationTest]
         All tests
-    
-    Theoretical Reference: IRH v21.4
     """
     return list(FALSIFICATION_TESTS.values())
 
@@ -400,8 +390,6 @@ def generate_comparison_summary() -> str:
     -------
     str
         Formatted summary
-    
-    Theoretical Reference: IRH v21.4
     """
     lines = []
     lines.append("=" * 100)

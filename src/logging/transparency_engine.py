@@ -208,12 +208,9 @@ class TransparencyEngine:
     >>> engine.info("Computing α⁻¹", reference="IRH v21.4 Part 1 §3.2.2, Eq. 3.4")
     >>> engine.step("Step 1: Computing leading order term")
     >>> engine.formula("α⁻¹ = (4π²γ̃*/λ̃*)", variables={'γ̃*': 105.276, 'λ̃*': 52.638})
-    >>> engine.value("α⁻¹_leading", 137.036, uncertainty=1e-6)  # From experimental measurement (for comparison)
+    >>> engine.value("α⁻¹_leading", 137.036, uncertainty=1e-6)
     >>> engine.passed("α⁻¹ computation complete")
     """
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def __init__(
         self,
@@ -360,13 +357,8 @@ class TransparencyEngine:
         ----------
         content : str
             Description of computational step
-        
-        # Theoretical Reference: IRH v21.4
         """
         self._emit(MessageType.STEP, content, **metadata)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def formula(
         self,
@@ -395,9 +387,6 @@ class TransparencyEngine:
             reference=reference,
             **metadata
         )
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def value(
         self,
@@ -441,10 +430,6 @@ class TransparencyEngine:
         """
         Emit validation check result.
         
-        Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Validation protocol for computational integrity
-        
         Parameters
         ----------
         check_name : str
@@ -462,43 +447,13 @@ class TransparencyEngine:
         msg_type = MessageType.VALIDATION if passed else MessageType.FAILED
         self._emit(msg_type, content, **metadata)
     
-    def warning(self, content: str, reference: Optional[str] = None, **metadata):
-        """
-        Emit warning message.
-        
-        # Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Module header, lines 4-16
-        
-        Parameters
-        ----------
-        content : str
-            Warning message content
-        reference : Optional[str]
-            Manuscript reference for the warning context
-        **metadata : Any
-            Additional metadata
-        """
-        self._emit(MessageType.WARNING, content, reference=reference, **metadata)
+    def warning(self, content: str, **metadata):
+        """Emit warning message."""
+        self._emit(MessageType.WARNING, content, **metadata)
     
-    def error(self, content: str, reference: Optional[str] = None, **metadata):
-        """
-        Emit error message.
-        
-        # Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Module header, lines 4-16
-        
-        Parameters
-        ----------
-        content : str
-            Error message content
-        reference : Optional[str]
-            Manuscript reference for the error context
-        **metadata : Any
-            Additional metadata
-        """
-        self._emit(MessageType.ERROR, content, reference=reference, **metadata)
+    def error(self, content: str, **metadata):
+        """Emit error message."""
+        self._emit(MessageType.ERROR, content, **metadata)
     
     def result(
         self,
@@ -511,10 +466,6 @@ class TransparencyEngine:
     ):
         """
         Emit final result with full context.
-        
-        # Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Result reporting with provenance tracking
         
         Parameters
         ----------
@@ -544,43 +495,13 @@ class TransparencyEngine:
             **metadata
         )
     
-    def passed(self, content: str, reference: Optional[str] = None, **metadata):
-        """
-        Emit success message.
-        
-        # Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Module header, lines 4-16
-        
-        Parameters
-        ----------
-        content : str
-            Success message content
-        reference : Optional[str]
-            Manuscript reference for the validation context
-        **metadata : Any
-            Additional metadata
-        """
-        self._emit(MessageType.PASSED, content, reference=reference, **metadata)
+    def passed(self, content: str, **metadata):
+        """Emit success message."""
+        self._emit(MessageType.PASSED, content, **metadata)
     
-    def failed(self, content: str, reference: Optional[str] = None, **metadata):
-        """
-        Emit failure message.
-        
-        # Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Module header, lines 4-16
-        
-        Parameters
-        ----------
-        content : str
-            Failure message content
-        reference : Optional[str]
-            Manuscript reference for the validation context
-        **metadata : Any
-            Additional metadata
-        """
-        self._emit(MessageType.FAILED, content, reference=reference, **metadata)
+    def failed(self, content: str, **metadata):
+        """Emit failure message."""
+        self._emit(MessageType.FAILED, content, **metadata)
     
     # -------------------------------------------------------------------------
     # Provenance Tracking
@@ -601,37 +522,7 @@ class TransparencyEngine:
         """
         Add complete provenance chain for a result.
         
-        Theoretical Reference:
-            IRH v21.4 Algorithmic Transparency Mandate §1.0
-            Provenance tracking for computational reproducibility
-        
         This creates a permanent record of how a result was derived.
-        
-        Parameters
-        ----------
-        result_name : str
-            Name of the result
-        final_value : float
-            Computed value
-        uncertainty : float
-            Uncertainty bound
-        theoretical_reference : str
-            Manuscript citation
-        formula : str
-            Mathematical formula used
-        components : Dict[str, Any]
-            Result components
-        input_sources : List[str]
-            Data sources
-        computational_method : str
-            Algorithm description
-        validation_checks : Dict[str, bool]
-            Validation results
-        
-        Returns
-        -------
-        ProvenanceChain
-            Complete provenance record
         """
         chain = ProvenanceChain(
             result_name=result_name,
@@ -647,9 +538,6 @@ class TransparencyEngine:
         
         self.provenance_chains.append(chain)
         return chain
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def get_provenance(self, result_name: Optional[str] = None) -> List[ProvenanceChain]:
         """
@@ -673,9 +561,6 @@ class TransparencyEngine:
     # -------------------------------------------------------------------------
     # Export & Display
     # -------------------------------------------------------------------------
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def export(self, format: str = 'dict') -> Union[Dict, str]:
         """
@@ -719,9 +604,6 @@ class TransparencyEngine:
         else:
             raise ValueError(f"Unknown format: {format}")
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def display_provenance(self, chain: ProvenanceChain):
         """Display provenance chain in human-readable format."""
         print("\n" + "="*70)
@@ -743,9 +625,6 @@ class TransparencyEngine:
             print(f"  {status} {check}")
         print("="*70 + "\n")
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def display_components(self, components: Dict[str, Any]):
         """Display component breakdown."""
         print("\n" + "="*70)
@@ -757,9 +636,6 @@ class TransparencyEngine:
             else:
                 print(f"  {name}: {value}")
         print("="*70 + "\n")
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def validate_result(
         self,
@@ -793,9 +669,6 @@ class TransparencyEngine:
                 sigma_dev = deviation / result.uncertainty if result.uncertainty > 0 else float('inf')
                 print(f"  Agreement: {sigma_dev:.2f}σ")
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def summary(self):
         """Display summary statistics."""
         n_messages = len(self.messages)
@@ -815,10 +688,6 @@ class TransparencyEngine:
 # =============================================================================
 # Convenience Functions
 # =============================================================================
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def create_engine(

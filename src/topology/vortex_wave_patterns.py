@@ -38,7 +38,7 @@ from .instanton_number import K_1, K_2, K_3, N_INST
 # ============================================================================
 
 # Electron mass in MeV
-M_ELECTRON = 0.511  # MeV - experimental value
+M_ELECTRON = 0.511  # MeV
 
 # Higgs VEV (for mass computations)
 HIGGS_VEV = 246.22  # GeV
@@ -127,9 +127,6 @@ class VortexWavePattern:
         """Topological winding number (same as generation number)."""
         return self.generation
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def is_stable(self) -> bool:
         """Check if this VWP is topologically stable."""
         # All three generations are stable by Morse theory
@@ -159,9 +156,6 @@ class VWPSpectrum:
             result[p.generation].append(p)
         return result
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def particle_count(self) -> Dict[str, int]:
         """Count particles by type."""
         return {
@@ -184,9 +178,6 @@ class ComplexityOperator:
     """
     eigenvalues: List[float] = field(default_factory=lambda: [K_1, K_2, K_3])
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def apply(self, vwp: VortexWavePattern) -> float:
         """
         Apply complexity operator to a VWP.
@@ -194,9 +185,6 @@ class ComplexityOperator:
         Returns the K_f eigenvalue.
         """
         return TOPOLOGICAL_COMPLEXITIES[vwp.generation]
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def spectrum(self) -> Dict:
         """
@@ -446,9 +434,6 @@ def verify_vwp_stability() -> Dict:
 # ============================================================================
 # Summary Generation
 # ============================================================================
-
-# Theoretical Reference: IRH v21.4
-
 
 def generate_vwp_summary() -> str:
     """

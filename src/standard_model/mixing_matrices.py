@@ -136,9 +136,6 @@ class CKMMatrix:
         J = np.imag(V[0,1] * V[1,2] * np.conj(V[0,2]) * np.conj(V[1,1]))
         return float(J)
     
-    # Theoretical Reference: IRH v21.4 Part 1, §3.2.3
-
-    
     def unitarity_check(self) -> Dict:
         """
         Verify CKM unitarity: V†V = I.
@@ -147,8 +144,6 @@ class CKMMatrix:
         -------
         dict
             Unitarity verification results
-        
-        # Theoretical Reference: IRH v21.4 Part 1, §3.2.3
         """
         VdV = np.dot(np.conj(self.V.T), self.V)
         VVd = np.dot(self.V, np.conj(self.V.T))
@@ -173,10 +168,6 @@ class CKMMatrix:
         -------
         dict
             Comparison results
-        
-        Theoretical Reference: IRH v21.4 Part 1, §3.2.3
-        
-        Theoretical Reference: IRH v21.4 Part 1, §3.2.3
         """
         # PDG 2023 values
         experimental = {
@@ -312,7 +303,6 @@ class PMNSMatrix:
         """Return |U_αi|² matrix (oscillation probabilities)."""
         return np.abs(self.U)**2
     
-    # Theoretical Reference: IRH v21.4 Part 1, §3.2.3
     def jarlskog_invariant(self) -> float:
         """
         Compute the leptonic Jarlskog invariant.
@@ -327,7 +317,6 @@ class PMNSMatrix:
         U = self.U
         J = np.imag(U[0,0] * U[1,1] * np.conj(U[0,1]) * np.conj(U[1,0]))
         return float(J)
-     # Theoretical Reference: IRH v21.4 Part 1, §3.2.3
     
     def unitarity_check(self) -> Dict:
         """Verify PMNS unitarity."""
@@ -352,8 +341,6 @@ class PMNSMatrix:
         These are derived from VWP topology and can be
         compared with experimental values from oscillation
         experiments (SNO, Super-K, DUNE, etc.).
-        
-        Theoretical Reference: IRH v21.4 Part 1, §3.2.3
         """
         return {
             'sin2_theta_12': self.s12**2,
@@ -369,7 +356,6 @@ class PMNSMatrix:
                 'delta_cp_degrees': 217,  # T2K + NOvA
             },
             'theoretical_reference': 'IRH v21.1 Manuscript Part 1 §3.2.3, Appendix E.3',
-        # Theoretical Reference: IRH v21.4 Part 1, §3.2.3
         }
     
     def compare_experimental(self) -> Dict:
@@ -452,8 +438,6 @@ def verify_mixing_matrices() -> Dict:
     -------
     dict
         Comprehensive verification results
-    
-    # Theoretical Reference: IRH v21.4 Part 1, §3.2.3
     """
     ckm = compute_ckm_matrix()
     pmns = compute_pmns_matrix()

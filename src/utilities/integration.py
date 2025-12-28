@@ -22,10 +22,6 @@ from scipy import integrate
 __version__ = "21.0.0"
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def integrate_SU2(
     f: Callable[[float, float, float], float],
     n_points: int = 100,
@@ -70,8 +66,6 @@ def integrate_SU2(
         
     elif method == 'quadrature':
         # Gauss-Legendre quadrature
-        # Theoretical Reference: IRH v21.4
-
         def integrand(alpha, beta, gamma):
             # Haar measure factor
             return f(alpha, beta, gamma) * np.sin(beta) / (8 * np.pi**2)
@@ -92,10 +86,6 @@ def integrate_SU2(
         'n_points': n_points,
         'method': method,
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def integrate_U1(
@@ -125,9 +115,6 @@ def integrate_U1(
     """
     if method == 'quadrature':
         def integrand(phi):
-            """
-            # Theoretical Reference: IRH v21.4
-            """
             return f(phi) / (2 * np.pi)
         
         result, error = integrate.quad(integrand, 0, 2*np.pi)
@@ -149,10 +136,6 @@ def integrate_U1(
         'n_points': n_points,
         'method': method,
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def integrate_G_inf(
@@ -200,10 +183,6 @@ def integrate_G_inf(
         'n_points': n_points,
         'method': method,
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def monte_carlo_integrate(

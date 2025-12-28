@@ -21,10 +21,6 @@ import numpy as np
 __version__ = "21.0.0"
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def discretize_SU2(
     n_points: int = 20,
     method: str = 'uniform',
@@ -93,10 +89,6 @@ def discretize_SU2(
     }
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def discretize_U1(
     n_points: int = 100,
 ) -> Dict[str, Any]:
@@ -124,10 +116,6 @@ def discretize_U1(
         'n_points': n_points,
         'manifold': 'U(1)',
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def laplacian_matrix(
@@ -201,10 +189,6 @@ def laplacian_matrix(
         raise ValueError(f"Unknown manifold: {manifold}")
     
     return L
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def lattice_volume(

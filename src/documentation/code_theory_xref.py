@@ -165,9 +165,6 @@ class CodeTheoryXRef:
         "3.6": "Yukawa coupling",
     }
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def __init__(self, source_root: str):
         """
         Initialize the cross-reference manager.
@@ -181,9 +178,6 @@ class CodeTheoryXRef:
         self.implementations: List[EquationImplementation] = []
         self.module_mappings: List[ModuleMapping] = []
         self._equations_found: Set[str] = set()
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def scan_file(self, file_path: Path) -> List[EquationImplementation]:
         """
@@ -298,9 +292,6 @@ class CodeTheoryXRef:
         else:
             return "complete"
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def scan_directory(self, directory: Optional[Path] = None) -> None:
         """
         Recursively scan a directory for Python files.
@@ -319,9 +310,6 @@ class CodeTheoryXRef:
             elif item.suffix == '.py':
                 impls = self.scan_file(item)
                 self.implementations.extend(impls)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def compute_coverage(self) -> CoverageReport:
         """
@@ -387,21 +375,14 @@ class CodeTheoryXRef:
             "coverage": self.compute_coverage().to_dict(),
         }
     
-    # Theoretical Reference: IRH v21.4
     def to_json(self, indent: int = 2) -> str:
         """Export cross-reference data as JSON."""
         return json.dumps(self.to_dict(), indent=indent)
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def scan_source_directory(source_root: str) -> CodeTheoryXRef:
     """
     Convenience function to scan a source directory.
-    
-    Theoretical Reference: IRH v21.4
     
     Parameters
     ----------
@@ -416,10 +397,6 @@ def scan_source_directory(source_root: str) -> CodeTheoryXRef:
     xref = CodeTheoryXRef(source_root)
     xref.scan_directory()
     return xref
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def generate_markdown_report(xref: CodeTheoryXRef) -> str:
@@ -499,10 +476,6 @@ def generate_markdown_report(xref: CodeTheoryXRef) -> str:
             lines.append(f"| Eq. {eq} | {xref.CRITICAL_EQUATIONS[eq]} |")
     
     return "\n".join(lines)
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def generate_interactive_html(xref: CodeTheoryXRef) -> str:

@@ -23,16 +23,19 @@ from typing import Dict, Optional, List
 
 import numpy as np
 
-# Import TransparencyEngine
-try:
-    from src.logging.transparency_engine import TransparencyEngine
-    _TRANSPARENCY_AVAILABLE = True
-except ImportError:
-    _TRANSPARENCY_AVAILABLE = False
-    TransparencyEngine = None
+# Import transparency engine
+import sys
+from pathlib import Path
+_repo_root = Path(__file__).resolve().parents[2]
+if str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
 
-__version__ = "21.0.0"
-__theoretical_foundation__ = "IRH v21.1 Manuscript Part 1 §3.2, Eq. 3.6"
+from src.logging.transparency_engine import TransparencyEngine, FULL, DETAILED
+from src.topology.complexity_operator import get_topological_complexity
+from src.standard_model.yukawa_rg_running import compute_fermion_mass_with_rg, YukawaRGResult
+
+__version__ = "21.4.0"
+__theoretical_foundation__ = "IRH v21.4 Manuscript Part 1 §3.2, Eq. 3.6"
 
 
 # Universal exponent (Eq. 1.16)
@@ -47,9 +50,13 @@ MU_STAR = 16 * math.pi**2
 HIGGS_VEV = 246.22
 
 
-# Topological complexity eigenvalues (Table 3.1, Appendix E.1)
-TOPOLOGICAL_COMPLEXITY = {  # From experimental measurement (for comparison)
-    # Charged leptons
+# =============================================================================
+# Validation Data (NOT FOR DERIVATION)
+# =============================================================================
+# These values are strictly for validation of computed results.
+# They MUST NOT be used as inputs for any calculation.
+# Source: IRH v21.4 Manuscript, Table 3.1
+_VALIDATION_TOPOLOGICAL_COMPLEXITY = {
     'electron': 1.0000,
     'muon': 206.768,
     'tau': 3477.150,
@@ -168,8 +175,8 @@ def mass_hierarchy() -> Dict:
     """
     Compute the full fermion mass hierarchy from topological complexity.
 
-    # Theoretical Reference:
-        IRH v21.1 Manuscript Part 1 §3.2, Table 3.1
+    Theoretical Reference:
+        IRH v21.4 Manuscript Part 1 §3.2, Table 3.1
 
     Returns
     -------

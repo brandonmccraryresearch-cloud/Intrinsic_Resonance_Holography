@@ -220,10 +220,6 @@ def _compute_derived_quantities(C_H: float) -> Dict[str, float]:
     }
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def verify_C_H_precision(n_digits: int = 12) -> Dict[str, Any]:
     """
     Verify the precision of C_H computation.
@@ -263,10 +259,6 @@ def verify_C_H_precision(n_digits: int = 12) -> Dict[str, Any]:
             'See IRH21.md Appendix B for the spectral zeta derivation.'
         ),
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def compute_C_H_from_spectral_zeta(
@@ -327,10 +319,6 @@ def compute_C_H_from_spectral_zeta(
         'n_eigenvalues': len(nonzero_eigs),
         'precision': 6,  # Limited by numerical computation
     }
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def get_C_H_comparison_table() -> str:

@@ -77,9 +77,6 @@ class Particle:
         if self.properties is None:
             self.properties = {}
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_property(self, prop_name: str) -> Optional[ExperimentalValue]:
         """Get a particle property."""
         if prop_name == 'mass':
@@ -124,7 +121,7 @@ MUON = Particle(
     symbol=r'\mu^-',
     particle_type=ParticleType.LEPTON,
     mass=ExperimentalValue(
-        value=105.6583755,  # From experimental measurement (for comparison)
+        value=105.6583755,
         uncertainty=0.0000023,
         unit='MeV/c²',
         source='PDG 2024',
@@ -511,10 +508,6 @@ PDG_PROPERTIES: Dict[str, ExperimentalValue] = {
 # =============================================================================
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def get_particle(name: str) -> Particle:
     """
     Get particle data from PDG database.
@@ -548,10 +541,6 @@ def get_particle(name: str) -> Particle:
         f"Particle '{name}' not found in PDG database. "
         f"Available particles: {list(set(p.name for p in PDG_DATABASE.values()))}"
     )
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def get_pdg_value(particle_name: str, property_name: str) -> ExperimentalValue:
@@ -595,16 +584,11 @@ def get_pdg_value(particle_name: str, property_name: str) -> ExperimentalValue:
     return value
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def list_particles() -> List[str]:
     """Return list of available particle names."""
     return sorted(set(p.name for p in PDG_DATABASE.values()))
 
 
-# Theoretical Reference: IRH v21.4
 def get_particles_by_type(particle_type: ParticleType) -> List[Particle]:
     """Get all particles of a given type."""
     seen = set()
@@ -616,13 +600,7 @@ def get_particles_by_type(particle_type: ParticleType) -> List[Particle]:
     return result
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def get_lepton_masses() -> Dict[str, ExperimentalValue]:
-    
-    # Theoretical Reference: IRH v21.4
     """Get all lepton masses."""
     return {p.name: p.mass for p in get_particles_by_type(ParticleType.LEPTON)}
 
@@ -632,13 +610,7 @@ def get_quark_masses() -> Dict[str, ExperimentalValue]:
     return {p.name: p.mass for p in get_particles_by_type(ParticleType.QUARK)}
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def mass_ratio(particle1: str, particle2: str) -> ExperimentalValue:
-    
-    # Theoretical Reference: IRH v21.4
     """
     Compute mass ratio m₁/m₂ with uncertainty propagation.
     

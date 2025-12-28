@@ -296,9 +296,6 @@ class HTMLSection:
     content: str
     collapsible: bool = False
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def to_html(self) -> str:
         """Generate HTML for section."""
         if self.collapsible:
@@ -318,9 +315,6 @@ class HTMLSection:
 </section>
 """
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def toc_entry(self) -> str:
         """Generate TOC entry."""
         return f'<li><a href="#{self.id}">{self.title}</a></li>'
@@ -335,14 +329,13 @@ class HTMLGenerator:
     """
     Generate interactive HTML reports for IRH computations.
     
-    # Theoretical Reference:
+    Theoretical Reference:
         IRH21.md Appendix K
         Interactive reports with MathJax equation rendering.
     """
     title: str = "IRH v21.0 Computation Report"
     sections: List[HTMLSection] = field(default_factory=list)
     
-    # Theoretical Reference: IRH v21.4
     def add_section(
         self,
         id: str,
@@ -358,16 +351,11 @@ class HTMLGenerator:
             collapsible=collapsible
         ))
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def add_equation_section(
         self,
         equations: List[Dict[str, Any]],
         collapsible: bool = True
     ) -> None:
-        
-        # Theoretical Reference: IRH v21.4 (ML Infrastructure)
         """Add section with theoretical equations."""
         content_parts = []
         
@@ -391,9 +379,6 @@ class HTMLGenerator:
             content="\n".join(content_parts),
             collapsible=collapsible
         )
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def add_results_table(
         self,
@@ -442,9 +427,6 @@ class HTMLGenerator:
             content=content,
             collapsible=False
         )
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def add_comparison_table(
         self,
@@ -514,9 +496,6 @@ class HTMLGenerator:
                 collapsible=False
             )
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def add_metadata_section(
         self,
         metadata: Dict[str, Any]
@@ -535,9 +514,6 @@ class HTMLGenerator:
             collapsible=True
         )
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def generate(self) -> str:
         """Generate complete HTML document."""
         timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
@@ -552,9 +528,6 @@ class HTMLGenerator:
             content=content
         )
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def save(self, path: Union[str, Path]) -> None:
         """Save HTML document to file."""
         path = Path(path)
@@ -565,9 +538,6 @@ class HTMLGenerator:
 # =============================================================================
 # Module-Level Convenience Functions
 # =============================================================================
-
-# Theoretical Reference: IRH v21.4
-
 
 def generate_html_report(
     title: str,
@@ -614,10 +584,6 @@ def generate_html_report(
         gen.save(output_path)
     
     return html_content
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def create_interactive_section(

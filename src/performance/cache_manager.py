@@ -122,17 +122,11 @@ class LRUCache(Generic[T]):
     [1, 2, 3]
     """
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def __init__(self, max_size: int = 1000):
         self.max_size = max_size
         self._cache: OrderedDict[Hashable, T] = OrderedDict()
         self._lock = threading.Lock()
         self._stats = CacheStats(max_size=max_size)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def get(self, key: Hashable) -> Optional[T]:
         """
@@ -156,9 +150,6 @@ class LRUCache(Generic[T]):
             self._stats.misses += 1
             return None
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def put(self, key: Hashable, value: T) -> None:
         """
         Put value into cache, evicting LRU item if necessary.
@@ -180,15 +171,11 @@ class LRUCache(Generic[T]):
             self._cache[key] = value
             self._stats.total_size = len(self._cache)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def contains(self, key: Hashable) -> bool:
         """Check if key exists in cache."""
         with self._lock:
             return key in self._cache
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def clear(self) -> None:
         """Clear all cached items."""
         with self._lock:
@@ -227,7 +214,6 @@ class DiskCache:
     >>> result = cache.get('computation_key')
     """
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def __init__(
         self,
         cache_dir: Union[Path, str] = '/tmp/irh_cache',
@@ -259,7 +245,6 @@ class DiskCache:
         key_hash = hashlib.sha256(key.encode()).hexdigest()[:HASH_TRUNCATE_LENGTH]
         return self.cache_dir / f'{key_hash}.pkl'
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def get(self, key: str) -> Optional[Any]:
         """
         Get value from disk cache.
@@ -286,7 +271,6 @@ class DiskCache:
             self._stats.misses += 1
             return None
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def put(self, key: str, value: Any) -> None:
         """
         Put value into disk cache.
@@ -347,7 +331,6 @@ class DiskCache:
         self._index['total_size'] -= size
         self._stats.evictions += 1
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def clear(self) -> None:
         """Clear all cached items."""
         with self._lock:
@@ -390,7 +373,6 @@ class CacheManager:
     >>> cache.get_or_compute('key', lambda: expensive_computation())
     """
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def __init__(
         self,
         name: str,
@@ -407,7 +389,6 @@ class CacheManager:
         )
         self._theoretical_reference = "IRH21.md §1.6, docs/ROADMAP.md §3.2"
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def get(self, key: Hashable) -> Optional[Any]:
         """
         Get value from cache (LRU first, then disk).
@@ -438,7 +419,6 @@ class CacheManager:
         
         return None
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def put(self, key: Hashable, value: Any, persist: bool = False) -> None:
         """
         Put value into cache.
@@ -457,9 +437,6 @@ class CacheManager:
         if persist and self._disk is not None:
             str_key = str(key)
             self._disk.put(str_key, value)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def get_or_compute(
         self,
@@ -492,15 +469,11 @@ class CacheManager:
         self.put(key, value, persist=persist)
         return value
     
-    # Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
     def clear(self) -> None:
         """Clear all caches."""
         self._lru.clear()
         if self._disk is not None:
             self._disk.clear()
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def get_stats(self) -> Dict[str, Any]:
         """
@@ -519,10 +492,6 @@ class CacheManager:
         if self._disk is not None:
             stats['disk'] = self._disk.stats.to_dict()
         return stats
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def create_cache(
@@ -558,10 +527,6 @@ def create_cache(
         )
         _cache_registry[name] = cache
         return cache
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def get_cache(name: str) -> Optional[CacheManager]:
@@ -608,8 +573,6 @@ def cached(
     ... def compute_qncd(s1: str, s2: str) -> float:
     ...     return expensive_qncd_computation(s1, s2)
     """
-    # Theoretical Reference: IRH v21.4
-
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -655,10 +618,6 @@ def _make_hashable(obj: Any) -> Hashable:
     return obj
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def clear_all_caches() -> None:
     """Clear all registered caches."""
     with _registry_lock:
@@ -666,7 +625,6 @@ def clear_all_caches() -> None:
             cache.clear()
 
 
-# Theoretical Reference: IRH v21.4 (Memory/Cache Management Infrastructure)
 def get_cache_stats() -> Dict[str, Dict[str, Any]]:
     """
     Get statistics from all registered caches.

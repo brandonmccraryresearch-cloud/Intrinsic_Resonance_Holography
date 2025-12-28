@@ -161,9 +161,6 @@ class SpectralDimensionFlow:
         """One-loop spectral dimension (no graviton corrections)."""
         return D_SPEC_ONE_LOOP
     
-    # Theoretical Reference: IRH v21.4 Part 1, §2.1, Theorem 2.1
-
-    
     def interpolate(self, t: float) -> float:
         """Interpolate spectral dimension at given RG time."""
         f = interp1d(self.t_values, self.d_spec_values, 
@@ -424,8 +421,6 @@ def spectral_dimension_flow(
         initial_d_spec = D_SPEC_UV
     
     # Define flow equation for scipy
-    # Theoretical Reference: IRH v21.4 Part 1, §2.1, Theorem 2.1
-
     def rhs(t, y):
         return [spectral_dimension_flow_equation(t, y[0])]
     
@@ -549,8 +544,6 @@ def heat_kernel_spectral_dimension(
         Spectral dimension at each s value
     """
     # Return probability P(s) = Tr[exp(-sK)]
-    # Theoretical Reference: IRH v21.4 Part 1, §2.1, Theorem 2.1
-
     def return_probability(s):
         return np.sum(np.exp(-s * laplacian_eigenvalues))
     
@@ -571,9 +564,6 @@ def heat_kernel_spectral_dimension(
 # ============================================================================
 # Summary and Comparison Functions
 # ============================================================================
-
-# Theoretical Reference: IRH v21.4 Part 1, §2.1, Theorem 2.1
-
 
 def generate_spectral_dimension_summary() -> Dict[str, Any]:
     """

@@ -122,9 +122,6 @@ def benchmark_qncd_single(
         v2 = np.random.rand(1, size)
         
         def bench_fn():
-            """
-            # Theoretical Reference: IRH v21.4
-            """
             return vectorized_qncd_distance(v1, v2)
         
         bench_fn.__name__ = f'qncd_single_dim_{size}'
@@ -173,9 +170,6 @@ def benchmark_qncd_batch(
         v2 = np.random.rand(batch_size, vector_dim)
         
         def bench_fn():
-            """
-            # Theoretical Reference: IRH v21.4
-            """
             return vectorized_qncd_distance(v1, v2)
         
         bench_fn.__name__ = f'qncd_batch_{batch_size}'
@@ -228,8 +222,6 @@ def benchmark_qncd_methods(
     v2 = np.random.rand(batch_size, vector_dim)
     
     for method in methods:
-        # Theoretical Reference: IRH v21.4
-
         def make_bench_fn(m):
             def bench_fn():
                 return vectorized_qncd_distance(v1, v2, method=m)
@@ -266,9 +258,6 @@ class QNCDBenchmarkSuite:
     iterations: int = 100
     warmup: int = 10
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def run_all(self) -> Dict[str, Dict[str, BenchmarkResult]]:
         """Run all QNCD benchmarks."""
         return {
@@ -283,12 +272,11 @@ class QNCDBenchmarkSuite:
             ),
         }
     
-    # Theoretical Reference: IRH v21.4 (Performance Infrastructure)
     def print_report(self, results: Dict[str, Dict[str, BenchmarkResult]]) -> None:
         """Print formatted benchmark report."""
         print("=" * 70)
         print("QNCD BENCHMARK REPORT")
-        # print("Theoretical Reference: IRH v21.1 Appendix A, docs/ROADMAP.md §3.7")
+        print("Theoretical Reference: IRH v21.1 Appendix A, docs/ROADMAP.md §3.7")
         print("=" * 70)
         
         for category, benchmarks in results.items():
@@ -301,15 +289,10 @@ class QNCDBenchmarkSuite:
                 if 'throughput_per_pair' in result.metadata:
                     print(f"    Pairs/s: {result.metadata['throughput_per_pair']:.1f}")
     
-    # Theoretical Reference: IRH v21.4 (Performance Infrastructure)
     def get_summary(
         self,
         results: Dict[str, Dict[str, BenchmarkResult]]
     ) -> Dict[str, Any]:
-        
-        # Theoretical Reference: IRH v21.4
-        
-        # Theoretical Reference: IRH v21.4
         """Get summary statistics."""
         summary = {
             'theoretical_reference': 'IRH v21.1 Appendix A, docs/ROADMAP.md §3.7',

@@ -110,9 +110,6 @@ class ProvenanceInfo:
     random_seed: Optional[int] = None
     parameters: Dict[str, Any] = field(default_factory=dict)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def compute_hash(self) -> str:
         """Compute reproducibility hash."""
         content = json.dumps({
@@ -199,9 +196,6 @@ class IRHDEFSchema:
     validation: ValidationInfo = field(default_factory=lambda: ValidationInfo(passed=True))
     metadata: Dict[str, Any] = field(default_factory=dict)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def add_result(
         self,
         name: str,
@@ -254,9 +248,6 @@ class IRHDEFSchema:
             "metadata": self.metadata,
         }
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def to_json(self, indent: int = 2) -> str:
         """Convert to JSON string."""
         return json.dumps(self.to_dict(), indent=indent, default=str)
@@ -273,7 +264,6 @@ class OutputFormatter:
         All numerical outputs must include theoretical provenance
     """
     
-    # Theoretical Reference: IRH v21.4
     def __init__(self, schema: IRHDEFSchema):
         """
         Initialize formatter with schema.
@@ -284,9 +274,6 @@ class OutputFormatter:
             Schema to format
         """
         self.schema = schema
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def format(self, output_format: OutputFormat = OutputFormat.JSON) -> str:
         """
@@ -474,7 +461,6 @@ class ReportGenerator:
         IRH v21.1 Manuscript - Documentation requirements
         "Complete theoretical provenance chain"
     """
-     # Theoretical Reference: IRH v21.4
     
     def __init__(self):
         """Initialize report generator."""
@@ -482,9 +468,6 @@ class ReportGenerator:
         self.title: str = "IRH Computation Report"
         self.author: str = ""
         self.abstract: str = ""
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def add_section(self, schema: IRHDEFSchema, section_title: str = "") -> None:
         """
@@ -499,9 +482,6 @@ class ReportGenerator:
         """
         schema.metadata["section_title"] = section_title or schema.computation_type
         self.sections.append(schema)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def set_metadata(
         self,
@@ -527,9 +507,6 @@ class ReportGenerator:
             self.author = author
         if abstract:
             self.abstract = abstract
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def generate(self, output_format: OutputFormat = OutputFormat.MARKDOWN) -> str:
         """
@@ -744,15 +721,11 @@ class ComplianceChecker:
     # Fields required for uncertainty quantification
     UNCERTAINTY_FIELDS = {
         "uncertainties",
-    # Theoretical Reference: IRH v21.4
     }
     
     def __init__(self):
         """Initialize compliance checker."""
         self.issues: List[str] = []
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def check(self, schema: IRHDEFSchema) -> ComplianceLevel:
         """
@@ -810,11 +783,7 @@ class ComplianceChecker:
             self.issues.append("No uncertainty information")
             return ComplianceLevel.MINIMAL
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_issues(self) -> List[str]:
-        # Theoretical Reference: IRH v21.4
         """Get compliance issues found."""
         return self.issues.copy()
     
@@ -852,8 +821,7 @@ class MetadataManager:
     
     Manages computational provenance and ensures reproducibility.
     
-    # Theoretical Reference:
-        # Theoretical Reference: IRH v21.4
+    Theoretical Reference:
         IRH v21.1 Manuscript - Reproducibility requirement
         "Complete provenance metadata enables exact reproduction"
     """
@@ -863,9 +831,6 @@ class MetadataManager:
         self._session_id: str = ""
         self._global_params: Dict[str, Any] = {}
         self._computation_log: List[Dict[str, Any]] = []
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def start_session(self, random_seed: Optional[int] = None) -> str:
         """
@@ -897,9 +862,6 @@ class MetadataManager:
         
         return self._session_id
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def log_computation(
         self,
         computation_type: str,
@@ -928,9 +890,6 @@ class MetadataManager:
         }
         self._computation_log.append(entry)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def create_provenance(self, **kwargs) -> ProvenanceInfo:
         """
         Create provenance info with current session data.
@@ -951,9 +910,6 @@ class MetadataManager:
             parameters=kwargs,
         )
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_session_summary(self) -> Dict[str, Any]:
         """
         Get session summary.
@@ -970,9 +926,6 @@ class MetadataManager:
             "computations": self._computation_log,
         }
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def export_provenance(self) -> str:
         """
         Export full provenance chain as JSON.
@@ -986,9 +939,6 @@ class MetadataManager:
 
 
 # Convenience functions
-
-# Theoretical Reference: IRH v21.4
-
 
 def create_irh_output(
     computation_type: str,
@@ -1025,10 +975,6 @@ def create_irh_output(
     return schema
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def format_output(
     schema: IRHDEFSchema,
     output_format: Union[OutputFormat, str] = OutputFormat.JSON,
@@ -1053,10 +999,6 @@ def format_output(
     
     formatter = OutputFormatter(schema)
     return formatter.format(output_format)
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def check_compliance(schema: IRHDEFSchema) -> Dict[str, Any]:

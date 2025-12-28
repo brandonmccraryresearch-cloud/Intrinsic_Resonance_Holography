@@ -110,10 +110,6 @@ __all__ = [
 ]
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def verify_all_primitives() -> dict:
     """
     Comprehensive verification of all primitive mathematical structures.

@@ -89,8 +89,6 @@ class DataEntry:
         }
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
-
     def from_dict(cls, data: Dict[str, Any]) -> 'DataEntry':
         """Create from dictionary."""
         return cls(
@@ -113,8 +111,6 @@ class DataEntry:
 
 
 class DataCatalog:
-    
-    # Theoretical Reference: IRH v21.4
     """
     Unified experimental data catalog.
     
@@ -144,11 +140,8 @@ class DataCatalog:
     
     >>> alpha = catalog.get('alpha_inverse')
     >>> print(f"α⁻¹ = {alpha.value:.9f}")
-    α⁻¹ = 137.035999084  # From experimental measurement (for comparison)
+    α⁻¹ = 137.035999084
     """
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def __init__(self, cache_dir: Optional[Path] = None):
         """
@@ -196,9 +189,6 @@ class DataCatalog:
                 )
                 seen_particles.add(particle.name)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get(self, key: str) -> ExperimentalValue:
         """
         Get experimental value by key.
@@ -241,18 +231,12 @@ class DataCatalog:
         
         raise KeyError(f"Key '{key}' not found in catalog")
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_entry(self, key: str) -> DataEntry:
         """Get full catalog entry (with metadata)."""
         key_lower = key.lower()
         if key_lower in self.entries:
             return self.entries[key_lower]
         raise KeyError(f"Key '{key}' not found in catalog")
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def search(self, query: str = "", category: str = None, tags: List[str] = None) -> List[DataEntry]:
         """
@@ -293,26 +277,17 @@ class DataCatalog:
         
         return results
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def list_categories(self) -> List[str]:
         """Get list of all categories."""
         return sorted(set(e.category for e in self.entries.values()))
     
-    # Theoretical Reference: IRH v21.4
     def list_keys(self, category: str = None) -> List[str]:
         """Get list of all keys, optionally filtered by category."""
         if category:
             return sorted(e.key for e in self.entries.values() if e.category == category)
         return sorted(self.entries.keys())
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def add(self, key: str, value: ExperimentalValue, category: str, tags: List[str] = None):
-        
-        # Theoretical Reference: IRH v21.4
         """
         Add a new entry to the catalog.
         
@@ -335,9 +310,6 @@ class DataCatalog:
         )
         self.entries[key.lower()] = entry
         self.last_updated = datetime.now()
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def update(self, key: str, value: ExperimentalValue):
         """
@@ -370,7 +342,6 @@ class DataCatalog:
         }
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
     def from_dict(cls, data: Dict[str, Any]) -> 'DataCatalog':
         """Create catalog from dictionary."""
         catalog = cls.__new__(cls)
@@ -383,9 +354,6 @@ class DataCatalog:
         }
         catalog.cache_dir = Path.home() / '.irh' / 'data_cache'
         return catalog
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def save(self, path: Optional[Path] = None):
         """
@@ -404,16 +372,11 @@ class DataCatalog:
             json.dump(self.to_dict(), f, indent=2)
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
-
     def load(cls, path: Path) -> 'DataCatalog':
         """Load catalog from JSON file."""
         with open(path, 'r') as f:
             data = json.load(f)
         return cls.from_dict(data)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def summary(self) -> str:
         """Generate catalog summary."""
@@ -436,9 +399,6 @@ class DataCatalog:
     def __len__(self) -> int:
         return len(self.entries)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def __contains__(self, key: str) -> bool:
         return key.lower() in self.entries
     
@@ -454,20 +414,12 @@ class DataCatalog:
 _DEFAULT_CATALOG: Optional[DataCatalog] = None
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def get_catalog() -> DataCatalog:
     """Get the default data catalog (singleton)."""
     global _DEFAULT_CATALOG
     if _DEFAULT_CATALOG is None:
         _DEFAULT_CATALOG = DataCatalog()
     return _DEFAULT_CATALOG
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def get_experimental_value(key: str) -> ExperimentalValue:
@@ -480,16 +432,11 @@ def get_experimental_value(key: str) -> ExperimentalValue:
     return get_catalog().get(key)
 
 
-# Theoretical Reference: IRH v21.4
-
-
-
 def search_catalog(query: str = "", **kwargs) -> List[DataEntry]:
     """Search the default catalog."""
     return get_catalog().search(query, **kwargs)
 
 
-# Theoretical Reference: IRH v21.4
 def compare_with_irh(
     irh_predictions: Dict[str, float],
     uncertainties: Dict[str, float] = None,

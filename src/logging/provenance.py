@@ -112,25 +112,17 @@ class ComputationRecord:
         """Convert to dictionary."""
         return asdict(self)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def to_json(self, indent: int = 2) -> str:
         """Convert to JSON string."""
         return json.dumps(self.to_dict(), indent=indent, default=str)
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
     def from_dict(cls, data: Dict[str, Any]) -> 'ComputationRecord':
         """Create from dictionary."""
         return cls(**data)
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
-
     def from_json(cls, json_str: str) -> 'ComputationRecord':
-        
-        # Theoretical Reference: IRH v21.4
         """Create from JSON string."""
         return cls.from_dict(json.loads(json_str))
 
@@ -149,9 +141,6 @@ class ProvenanceTracker:
     """
     
     _instance: Optional['ProvenanceTracker'] = None
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def __init__(
         self,
@@ -178,8 +167,6 @@ class ProvenanceTracker:
             self._load_existing()
     
     @classmethod
-    # Theoretical Reference: IRH v21.4
-
     def get_instance(cls) -> 'ProvenanceTracker':
         """Get singleton instance."""
         if cls._instance is None:
@@ -201,9 +188,6 @@ class ProvenanceTracker:
         if self.storage_path:
             with open(self.storage_path, 'w') as f:
                 json.dump([r.to_dict() for r in self._records], f, indent=2, default=str)
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def start_computation(
         self,
@@ -252,24 +236,15 @@ class ProvenanceTracker:
         
         return self._current
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def add_input(self, key: str, value: Any) -> None:
         """Add an input parameter to current computation."""
         if self._current:
             self._current.input_parameters[key] = value
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def add_result(self, key: str, value: Any) -> None:
         """Add an output result to current computation."""
         if self._current:
             self._current.output_results[key] = value
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def complete_computation(
         self,
@@ -307,18 +282,12 @@ class ProvenanceTracker:
         
         return record
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_record(self, id: str) -> Optional[ComputationRecord]:
         """Get a computation record by ID."""
         for record in self._records:
             if record.id == id:
                 return record
         return None
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def get_records(
         self,
@@ -356,9 +325,6 @@ class ProvenanceTracker:
         
         return records
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def get_chain(self, id: str) -> List[ComputationRecord]:
         """
         Get the full provenance chain for a computation.
@@ -387,9 +353,6 @@ class ProvenanceTracker:
                 break
         
         return chain
-    
-    # Theoretical Reference: IRH v21.4
-
     
     def verify_record(self, id: str) -> Dict[str, Any]:
         """
@@ -428,15 +391,11 @@ class ProvenanceTracker:
             'record_id': id
         }
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def export(self, path: str) -> None:
         """Export all records to JSON file."""
         with open(path, 'w') as f:
             json.dump([r.to_dict() for r in self._records], f, indent=2, default=str)
     
-    # Theoretical Reference: IRH v21.4
     def generate_report(self) -> str:
         """Generate a provenance report."""
         lines = [
@@ -464,12 +423,7 @@ class ProvenanceTracker:
         
         return "\n".join(lines)
     
-    # Theoretical Reference: IRH v21.4
-
-    
     def clear(self) -> None:
-        
-        # Theoretical Reference: IRH v21.4
         """Clear all records."""
         self._records.clear()
         self._current = None
@@ -482,10 +436,6 @@ class ProvenanceTracker:
 # =============================================================================
 
 _default_tracker: Optional[ProvenanceTracker] = None
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def create_provenance_tracker(
@@ -513,10 +463,6 @@ def create_provenance_tracker(
         auto_save=auto_save
     )
     return _default_tracker
-
-
-# Theoretical Reference: IRH v21.4
-
 
 
 def get_provenance_tracker() -> ProvenanceTracker:
