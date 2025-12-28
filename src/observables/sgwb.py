@@ -16,7 +16,7 @@ Last Updated: December 2025
 """
 
 import numpy as np
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 __version__ = "22.2.0"
 __theoretical_foundation__ = "IRH v22.2 Manuscript Part 1 §5.1"

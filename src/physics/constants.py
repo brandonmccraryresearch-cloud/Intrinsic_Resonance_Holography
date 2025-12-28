@@ -15,7 +15,6 @@ Last Updated: December 2025
 """
 
 import numpy as np
-from src.substrate.holonomy import compute_phase_locked_holonomy
 
 __version__ = "22.2.0"
 __theoretical_foundation__ = "IRH v22.2 Manuscript Part 1 §4.1"
