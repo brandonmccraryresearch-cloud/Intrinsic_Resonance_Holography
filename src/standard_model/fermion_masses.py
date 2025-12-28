@@ -19,7 +19,7 @@ Last Updated: December 2025 (IRH v21.4 compliance)
 """
 
 import math
-from typing import Dict, Optional, List
+from typing import Dict
 
 import numpy as np
 
@@ -30,9 +30,9 @@ _repo_root = Path(__file__).resolve().parents[2]
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from src.logging.transparency_engine import TransparencyEngine, FULL, DETAILED
+from src.logging.transparency_engine import TransparencyEngine
 from src.topology.complexity_operator import get_topological_complexity
-from src.standard_model.yukawa_rg_running import compute_fermion_mass_with_rg, YukawaRGResult
+from src.standard_model.yukawa_rg_running import compute_fermion_mass_with_rg
 
 __version__ = "21.4.0"
 __theoretical_foundation__ = "IRH v21.4 Manuscript Part 1 §3.2, Eq. 3.6"

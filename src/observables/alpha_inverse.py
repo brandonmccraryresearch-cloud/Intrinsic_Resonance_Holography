@@ -27,7 +27,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Optional
 
 import numpy as np
 
@@ -38,7 +38,7 @@ _repo_root = Path(__file__).resolve().parents[2]
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from src.logging.transparency_engine import TransparencyEngine, FULL, DETAILED
+from src.logging.transparency_engine import TransparencyEngine
 from src.rg_flow.fixed_points import (
     find_fixed_point,
     CosmicFixedPoint,

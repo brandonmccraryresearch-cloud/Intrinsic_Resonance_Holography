@@ -17,9 +17,8 @@ Last Updated: December 2025
 import unittest
 import numpy as np
 from src.physics.constants import compute_alpha_inverse
-from src.substrate.holonomy import compute_berry_phase
 from src.operators.laplacian import SymplecticGuard
-from src.physics.tensors import compute_stress_energy_tensor, compute_emergent_metric
+from src.physics.tensors import compute_stress_energy_tensor
 from src.substrate.manifold import NodeOscillator
 
 class TestCymaticSingularity(unittest.TestCase):

@@ -26,7 +26,7 @@ Last Updated: December 2025
 """
 
 import math
-from typing import Dict, List
+from typing import List
 
 # Import transparency engine
 import sys
@@ -35,7 +35,7 @@ _repo_root = Path(__file__).resolve().parents[2]
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from src.logging.transparency_engine import TransparencyEngine, FULL
+from src.logging.transparency_engine import TransparencyEngine
 from src.rg_flow.fixed_points import MU_STAR
 from src.standard_model.yukawa_rg_running import PLANCK_SCALE, ELECTROWEAK_SCALE
 

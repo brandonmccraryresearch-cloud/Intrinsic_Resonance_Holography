@@ -5,7 +5,6 @@ This suite validates the implementation of Eq. 3.4 corrections for the
 fine-structure constant.
 """
 
-import pytest
 import math
 from src.observables.alpha_inverse import compute_fine_structure_constant
 from src.observables.qncd_geometric_factor import compute_qncd_geometric_factor

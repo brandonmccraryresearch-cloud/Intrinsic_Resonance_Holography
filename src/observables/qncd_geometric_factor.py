@@ -27,7 +27,6 @@ Last Updated: December 2025
 
 import math
 import numpy as np
-from typing import Tuple, Dict, Optional, Callable
 
 # Import transparency engine
 import sys
@@ -36,7 +35,7 @@ _repo_root = Path(__file__).resolve().parents[2]
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from src.logging.transparency_engine import TransparencyEngine, FULL, DETAILED
+from src.logging.transparency_engine import TransparencyEngine
 from src.rg_flow.fixed_points import LAMBDA_STAR, GAMMA_STAR, MU_STAR
 
 __version__ = "21.4.0"
