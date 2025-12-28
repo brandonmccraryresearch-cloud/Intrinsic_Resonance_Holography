@@ -24,7 +24,7 @@ Last Updated: December 2025
 
 import numpy as np
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import Dict
 import networkx as nx
 
 __version__ = "22.2.0"
