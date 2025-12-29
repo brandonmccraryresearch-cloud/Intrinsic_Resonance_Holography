@@ -20,7 +20,7 @@ TECH_STACK_INTEGRATION.md - Complete documentation
 import sys
 import numpy as np
 from src.techstack import check_available_libraries, get_tech_stack_status
-from src.techstack.config import TechStackConfig, apply_config
+from src.techstack.config import TechStackConfig
 from src.techstack.gpu_backend import GPUBackend
 from src.techstack.sympy_helpers import SymbolicBetaFunctions, QuaternionicAlgebra
 from src.techstack.jax_md_wrapper import SubstrateDynamics
