@@ -241,11 +241,56 @@ ti.init(arch=ti.gpu)
 
 @ti.kernel
 def substrate_dynamics(field: ti.template(), dt: float):
-    """Parallel update of substrate oscillators."""
-    for i, j, k in field:
-        # Quaternionic field update with QNCD interactions
-        pass
+    """
+    Parallel update of substrate oscillators on a quaternionic field.
 
+    Notes
+    -----
+    This is a **minimal working example** illustrating the Taichi kernel
+    pattern for in-place quaternionic field evolution with a simple
+    local interaction. It treats `field` as a 3D Taichi field whose
+    elements are 4-component vectors representing quaternion components,
+    e.g.::
+
+        field = ti.Vector.field(4, dtype=ti.f32, shape=(Nx, Ny, Nz))
+
+    The interaction implemented here is a toy, QNCD-inspired smoothing
+    step: each site is driven toward the mean of its 6-neighborhood
+    (±x, ±y, ±z). The full IRH implementation replaces this with the
+    true QNCD-based interaction on G_inf = SU(2) × U(1)_φ.
+    """
+    for i, j, k in field:
+        # Current quaternion state q = (q0, q1, q2, q3)
+        q = field[i, j, k]
+
+        # Accumulate neighbor quaternions (6-neighborhood: ±x, ±y, ±z)
+        accum = ti.Vector([0.0, 0.0, 0.0, 0.0])
+        count = 0
+
+        for di, dj, dk in ti.static(((1, 0, 0), (-1, 0, 0),
+                                     (0, 1, 0), (0, -1, 0),
+                                     (0, 0, 1), (0, 0, -1))):
+            ni = i + di
+            nj = j + dj
+            nk = k + dk
+
+            if 0 <= ni < field.shape[0] and 0 <= nj < field.shape[1] and 0 <= nk < field.shape[2]:
+                accum += field[ni, nj, nk]
+                count += 1
+
+        # Compute neighbor mean if any neighbors exist; otherwise stay at q.
+        neighbor_mean = q
+        if count > 0:
+            neighbor_mean = accum / count
+
+        # Simple "compression-like" driving term toward neighbor_mean.
+        # In full QNCD, this would be replaced by a metric derived from
+        # normalized compression distances on the informational manifold.
+        omega = neighbor_mean - q
+
+        # Explicit Euler step for dq/dt = omega
+        dq_dt = omega
+        field[i, j, k] = q + dt * dq_dt
 # Use for: Custom GPU kernels for substrate simulation
 # Key patterns:
 #   - Struct-of-arrays for quaternionic fields
