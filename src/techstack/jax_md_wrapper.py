@@ -158,14 +158,39 @@ class SubstrateDynamics:
             # Fallback: simple diffusion
             noise = np.random.normal(0, np.sqrt(2 * dt), positions.shape)
             return positions + noise * np.sqrt(n_steps)
-        
-        # Use JAX-MD for full simulation
-        # This is a simplified example - full implementation would use
-        # proper QNCD-based energy and NVT ensemble
-        
-        return np.array(positions)  # Placeholder
 
+        # JAX-based evolution using a simple pairwise soft-sphere potential.
+        # This is a minimal working implementation; a full IRH implementation
+        # should replace the potential with the QNCD-based interaction and may
+        # switch to a proper NVT integrator from jax-md.simulate.
 
+        # Ensure JAX array dtype/shape are well defined.
+        pos = jnp.asarray(positions)
+
+        sigma = 1.0
+
+        def total_energy(x: "jnp.ndarray") -> "jnp.ndarray":
+            """Pairwise soft-sphere-like potential energy over all particles."""
+            # x has shape (N, d). Compute pairwise displacements and distances.
+            disp = x[jnp.newaxis, :, :] - x[:, jnp.newaxis, :]
+            r = jnp.linalg.norm(disp, axis=-1)
+            # Upper-triangular mask to count each pair once and ignore self-interactions.
+            idx = jnp.triu_indices(r.shape[0], k=1)
+            r_pairs = r[idx]
+            # Same placeholder form as qncd_potential, but vectorized.
+            pair_energy = jnp.where(r_pairs < sigma, (1.0 - r_pairs / sigma) ** 2, 0.0)
+            return jnp.sum(pair_energy)
+
+        # Single integration step: explicit Euler on gradient flow.
+        @jax.jit
+        def step(x: "jnp.ndarray") -> "jnp.ndarray":
+            forces = -jax.grad(total_energy)(x)
+            return x + dt * forces
+
+        for _ in range(int(n_steps)):
+            pos = step(pos)
+
+        return np.array(pos)
 def is_available() -> bool:
     """Check if JAX-MD is available."""
     return JAX_MD_AVAILABLE
