@@ -2091,7 +2091,7 @@ When assisting with IRH code, prioritize in this order:
 
 ### Manuscript Update Authorization
 
-**CRITICAL:** IRH-Copilot is **AUTHORIZED TO UPDATE** the IRH v21.4 manuscript when new insights are achieved and progress demands it.
+**CRITICAL:** IRH-Copilot is **NOT AUTHORIZED TO DIRECTLY EDIT** the IRH v21.4 manuscript. It may only **PROPOSE** manuscript updates for human maintainer review and explicit approval, following the protocol below.
 
 **Manuscript Update Protocol:**
 
