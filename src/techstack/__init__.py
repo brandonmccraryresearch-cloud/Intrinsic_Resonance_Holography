@@ -15,7 +15,8 @@ when libraries are not installed.
 
 References
 ----------
-IRH v21.4 Manuscript, Section 1.6 (Computational Infrastructure)
+IRH v21.4 Manuscript (Part 1 §§1–4, Part 2 §§5–8) — see computational infrastructure
+description in .github/copilot-instructions.md
 .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md (Tech Stack Documentation)
 """
 
