@@ -36,3 +36,13 @@ matplotlib>=3.7.0
 
 # Optional: Parallel computing
 # mpi4py>=3.1.0
+
+# Optional: Advanced Physics-ML Stack (IRH-Copilot)
+# Reference: .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md
+# jax-md>=0.1.0          # Molecular dynamics with JAX
+# nvidia-modulus>=0.1.0  # Physics-ML framework
+# qutip>=5.0.0           # Quantum toolbox
+# dynamiqs>=0.1.0        # JAX quantum simulation
+# phiflow>=2.0.0         # Differentiable physics
+# taichi>=1.6.0          # High-performance parallel computing
+# Note: CuPy already listed above under GPU acceleration

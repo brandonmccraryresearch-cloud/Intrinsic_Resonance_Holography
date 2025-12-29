@@ -28,6 +28,7 @@
 | [**Desktop App Roadmap**](./docs/DEB_PACKAGE_ROADMAP.md) | Implementation plan for .deb desktop application |
 | [**Contributing Guidelines**](./CONTRIBUTING.md) | How to contribute to the project |
 | [**GitHub Copilot Instructions**](./.github/copilot-instructions.md) | 🤖 Comprehensive guide for GitHub Copilot users (coding standards, patterns, domain knowledge) |
+| [**IRH-Copilot AI System**](./.github/GITHUB_COPILOT_AGENT_IRH_v21.4.md) | 🚀 Specialized AI assistant for IRH v21.4 with Physics-ML library stack |
 
 ---
 
