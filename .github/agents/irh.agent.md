@@ -266,27 +266,30 @@ def substrate_dynamics(field: ti.template(), dt: float):
 ```
 Intrinsic_Resonance_Holography/
 ├── core/                       # Core theoretical implementations
-│   ├── substrate.py            # G_inf = SU(2) × U(1) manifold
-│   ├── cgft_action.py          # Quaternionic cGFT action terms
-│   ├── harmony_functional.py   # Effective action computation
-│   ├── rg_flow.py              # β-functions and Wetterich equation
-│   └── qncd_metric.py          # Resonant Proximity calculations
-├── physics/                    # Emergent physics modules
-│   ├── spacetime/              # Metric emergence, Einstein eqs
-│   ├── standard_model/         # Gauge symmetries, fermions
-│   ├── cosmology/              # Dark energy, inflation
-│   └── quantum_mechanics/      # Born rule, decoherence
-├── optimizer/                  # HarmonyOptimizer engine
-│   ├── fixed_point_solver.py   # Non-Gaussian fixed point finder
-│   ├── stability_analysis.py   # Lyapunov functional, eigenvalues
-│   └── ml_surrogates/          # Neural operator accelerators
-├── verification/               # Manuscript verification protocols
-│   ├── equation_tests/         # Tests for 17 critical equations
-│   └── certification/          # MVM (Minimal Verification Module)
-├── interfaces/                 # User interfaces
-│   ├── web/                    # FastAPI + React
-│   └── desktop/                # PyQt6
-└── tests/                      # 970+ test suite
+src/
+├── primitives/                 # Foundational structures
+├── cgft/                       # Field theory (cGFT action, fields)
+├── rg_flow/                    # Renormalization group flow
+├── emergent_spacetime/         # Geometry, metric tensor, spectral dimension
+├── topology/                   # Topological structures (β₁, n_inst, VWPs)
+├── standard_model/             # Particle physics, gauge groups, fermion masses
+├── cosmology/                  # Dark energy, Λ*, w₀, cosmological observables
+├── quantum_mechanics/          # Born rule, decoherence, Lindblad dynamics
+├── falsifiable_predictions/    # Testable predictions (LIV, GW sidebands, g-2, etc.)
+├── observables/                # Observable extraction (α, C_H, derived constants)
+├── performance/                # MPI, GPU, distributed, and ML surrogates
+└── utilities/                  # Shared helpers and cross-cutting tools
+tests/
+├── unit/                       # Mirrors src/ structure
+│   ├── test_rg_flow/
+│   ├── test_emergent_spacetime/
+│   ├── test_topology/
+│   ├── test_standard_model/
+│   ├── test_cosmology/
+│   ├── test_quantum_mechanics/
+│   ├── test_falsifiable_predictions/
+│   └── test_performance/
+└── integration/                # Cross-module and end-to-end tests
 ```
 
 ### Key Design Patterns
