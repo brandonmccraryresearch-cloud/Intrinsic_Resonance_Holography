@@ -8,7 +8,7 @@ References
 .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Implementation Priorities
 """
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Literal, Optional
 from enum import Enum
 
@@ -171,6 +171,7 @@ def configure_jax(config: TechStackConfig) -> None:
             jax.config.update("jax_default_dtype_bits", "32")
             
     except ImportError:
+        # JAX not available - skip configuration
         pass
 
 
@@ -203,6 +204,7 @@ def configure_taichi(config: TechStackConfig) -> None:
             ti.init(arch=getattr(ti, arch))
             
     except ImportError:
+        # Taichi not available - skip configuration
         pass
 
 

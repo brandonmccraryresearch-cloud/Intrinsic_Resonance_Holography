@@ -10,7 +10,7 @@ References
 IRH v21.4 Manuscript, Appendix D.2 - VWP fermionic defects
 """
 
-from typing import Optional, List, Tuple
+from typing import Optional, List
 import numpy as np
 
 # Optional import
@@ -190,6 +190,11 @@ class VortexWavePattern:
         """
         Create VWP quantum state.
         
+        **Note:** This is a simplified placeholder using a coherent state.
+        The actual VWP has complex topological structure (see Appendix D.2)
+        and should use the full implementation in src/topology/vortex_wave_patterns.py
+        for production computations.
+        
         Parameters
         ----------
         n_levels : int
@@ -198,19 +203,28 @@ class VortexWavePattern:
         Returns
         -------
         Qobj or None
-            VWP state or None if QuTiP unavailable.
+            Simplified VWP state or None if QuTiP unavailable.
+            
+        References
+        ----------
+        IRH v21.4 Manuscript, Appendix D.2 - VWP fermionic defects
         """
         if not self.available:
             return None
         
-        # Create coherent state with phase winding
-        # This is simplified - actual VWP has topological structure
+        # Simplified coherent state approximation
+        # TODO: Replace with proper topological VWP structure from src/topology/
         state = qt.coherent(n_levels, np.sqrt(self.K_f))
         return state
     
     def compute_mass_ratio(self, K_f_reference: int = 1) -> float:
         """
-        Compute mass ratio from topological complexity.
+        Compute simplified mass ratio from topological complexity.
+        
+        **Warning:** This is an oversimplified approximation. The full fermion
+        mass formula (Eq. 3.6) includes Yukawa RG running factors (R_Y) and
+        other corrections. For production use, see src/standard_model/fermion_masses.py
+        which implements the complete formula.
         
         Parameters
         ----------
@@ -220,12 +234,14 @@ class VortexWavePattern:
         Returns
         -------
         float
-            Mass ratio m/m_e.
+            Simplified mass ratio m/m_e (not including RG corrections).
             
         References
         ----------
-        IRH v21.4 Manuscript, Equation 3.6 - Fermion mass formula
+        IRH v21.4 Manuscript, Equation 3.6 - Fermion mass formula (full version)
         """
+        # Simplified ratio without RG running factors
+        # Full formula: m_f = (K_f / K_e) * R_Y * m_e * (additional corrections)
         return self.K_f / K_f_reference
 
 

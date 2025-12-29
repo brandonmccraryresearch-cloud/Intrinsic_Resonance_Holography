@@ -40,6 +40,7 @@ def _check_library(import_name: str, display_name: str, description: str) -> Lib
             module = importlib.import_module(import_name)
             version = getattr(module, "__version__", None)
         except Exception:
+            # Module import failed or version attribute missing - continue without version
             pass
     
     return LibraryStatus(

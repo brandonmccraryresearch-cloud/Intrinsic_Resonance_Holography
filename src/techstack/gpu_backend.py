@@ -8,7 +8,7 @@ References
 .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU acceleration patterns
 """
 
-from typing import Union, Callable, Optional, Any
+from typing import Optional
 import numpy as np
 from enum import Enum
 

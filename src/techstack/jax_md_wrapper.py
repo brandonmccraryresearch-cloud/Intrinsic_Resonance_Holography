@@ -10,14 +10,14 @@ References
 IRH v21.4 Manuscript, Section 1.2 - G_inf substrate dynamics
 """
 
-from typing import Callable, Optional, Tuple
+from typing import Optional
 import numpy as np
 
 # Optional import
 try:
     import jax
     import jax.numpy as jnp
-    from jax_md import space, energy, minimize, simulate
+    from jax_md import space
     JAX_MD_AVAILABLE = True
 except ImportError:
     JAX_MD_AVAILABLE = False
@@ -104,7 +104,15 @@ class SubstrateDynamics:
         """
         Compute QNCD-based interaction potential.
         
-        This is a template - should be replaced with actual QNCD metric.
+        **Critical Note:** This is a placeholder soft-sphere potential for
+        demonstration purposes only. The actual QNCD (Quantum Normalized
+        Compression Distance) metric is defined in Appendix A of the IRH v21.4
+        manuscript and is fundamental to substrate dynamics.
+        
+        **For production use**, this must be replaced with the full QNCD
+        implementation from the IRH core modules. The QNCD metric encodes
+        the quantum-informational proximity on G_inf and is essential for
+        theoretically correct substrate evolution.
         
         Parameters
         ----------
@@ -114,15 +122,21 @@ class SubstrateDynamics:
         Returns
         -------
         float
-            Potential energy.
+            Potential energy (placeholder - not actual QNCD).
             
         References
         ----------
-        IRH v21.4 Manuscript, Appendix A - QNCD Metric
+        IRH v21.4 Manuscript, Appendix A - QNCD Metric (full definition)
+        
+        Warnings
+        --------
+        This placeholder implementation does NOT implement the true QNCD metric
+        and should NOT be used for production computations requiring theoretical
+        fidelity to the IRH v21.4 framework.
         """
         if self.available:
             # Placeholder: soft-sphere potential
-            # TODO: Replace with actual QNCD potential
+            # TODO: CRITICAL - Replace with actual QNCD potential from Appendix A
             r = jnp.linalg.norm(dr)
             sigma = 1.0
             return jnp.where(r < sigma, (1.0 - r / sigma) ** 2, 0.0)
@@ -140,6 +154,11 @@ class SubstrateDynamics:
         """
         Evolve substrate dynamics.
         
+        **Implementation Note:** This uses a minimal working JAX-based gradient
+        flow integrator with a soft-sphere potential. For full theoretical fidelity,
+        the soft-sphere potential should be replaced with the QNCD metric from
+        Appendix A and integrated using proper NVT ensemble methods.
+        
         Parameters
         ----------
         positions : np.ndarray
@@ -153,6 +172,16 @@ class SubstrateDynamics:
         -------
         np.ndarray
             Final positions after evolution.
+            
+        References
+        ----------
+        IRH v21.4 Manuscript, Section 1.2 - G_inf substrate dynamics
+        IRH v21.4 Manuscript, Appendix A - QNCD Metric (for full implementation)
+        
+        Warnings
+        --------
+        The current implementation uses a placeholder soft-sphere potential
+        instead of the theoretically correct QNCD-based interaction.
         """
         if not self.available:
             # Fallback: simple diffusion
@@ -191,6 +220,8 @@ class SubstrateDynamics:
             pos = step(pos)
 
         return np.array(pos)
+
+
 def is_available() -> bool:
     """Check if JAX-MD is available."""
     return JAX_MD_AVAILABLE

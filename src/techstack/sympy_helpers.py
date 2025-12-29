@@ -10,15 +10,12 @@ References
 IRH v21.4 Manuscript - Analytical derivations throughout
 """
 
-from typing import Optional, Tuple, List
-import numpy as np
+from typing import Optional
 
 # SymPy should be available (it's in core requirements)
 try:
     import sympy as sp
     from sympy import symbols, Matrix, exp, I, pi, sqrt
-    from sympy import integrate, diff, simplify, expand
-    from sympy.physics.quantum import Commutator
     from sympy.algebras.quaternion import Quaternion
     SYMPY_AVAILABLE = True
 except ImportError:
@@ -98,24 +95,49 @@ class SymbolicBetaFunctions:
     
     def find_fixed_point_symbolic(self) -> Optional[dict]:
         """
-        Find fixed point by solving β=0 symbolically.
+        Compute symbolic one-loop β-function zeros (not the full IRH fixed point).
+        
+        This helper solves the **one-loop** truncated beta function for λ̃
+        (Eq. 1.13 in the IRH v21.4 Manuscript) by imposing β_λ(λ̃) = 0 and returns
+        the resulting symbolic λ̃ solutions. It does **not** incorporate the full
+        functional RG (Wetterich) equation (Eq. 1.12) and therefore does **not**
+        reproduce the certified cosmic fixed point (Eq. 1.14), which is implemented
+        in the numerical RG flow stack (see ``src/rg_flow/fixed_points.py``).
+        
+        This method is intended solely for analytical verification and sanity checks
+        of the one-loop structure; it MUST NOT be used as the IRH v21.4 cosmic fixed
+        point in any production computations.
         
         Returns
         -------
         dict or None
-            Dictionary with symbolic solutions or None if unavailable.
+            Dictionary with symbolic one-loop β_λ=0 solutions and associated
+            metadata, or None if SymPy is unavailable.
         """
         if not self.available:
             return None
         
-        # Solve β_λ = 0
+        # Solve β_λ = 0 for the one-loop truncated beta function (Eq. 1.13).
+        # This yields the perturbative β_λ-zero(s) only; it is **not** the
+        # full IRH v21.4 cosmic fixed point from the Wetterich equation (Eq. 1.12).
         lambda_fps = sp.solve(self.beta_lambda_expr(), self.lambda_sym)
         
-        # Fixed point values (one-loop zero)
-        # Note: The cosmic fixed point requires full Wetterich equation
+        # Return explicit metadata to prevent confusion with the certified
+        # CosmicFixedPoint implementation in src/rg_flow/fixed_points.py.
         return {
             "lambda_star": lambda_fps,
-            "note": "One-loop approximation. Full fixed point requires Wetterich equation."
+            "beta_order": "one_loop",
+            "scheme": "symbolic_one_loop_beta_lambda_zero",
+            "is_certified_irh_v21_4_fixed_point": False,
+            "description": (
+                "Symbolic one-loop β_λ=0 solutions for analytical verification only; "
+                "does NOT implement the full Wetterich equation or Eq. 1.14."
+            ),
+            "note": (
+                "One-loop approximation of β_λ=0. The certified cosmic fixed point "
+                "requires the full Wetterich equation and is implemented in "
+                "src/rg_flow/fixed_points.py."
+            ),
         }
 
 
