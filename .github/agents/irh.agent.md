@@ -333,13 +333,72 @@ def find_cosmic_fixed_point(
     """
     Locate the unique non-Gaussian IR fixed point.
     
-    Returns certified values for (λ*, γ*, μ*) with error bounds.
+    This function is an **algorithmic protocol template** illustrating the
+    expected Newton–Raphson-style fixed-point search pattern for the IRH
+    v21.4 RG flow (Eqs. 1.12–1.14). It is not a complete implementation.
+    
+    Returns
+    -------
+    CosmicFixedPoint
+        Container for the converged couplings (λ̃*, γ̃*, μ̃*) and associated
+        uncertainties, when implemented against the full RG flow.
     """
-    # Use combination of:
-    # 1. Newton-Raphson for local refinement
-    # 2. Global basin analysis via Lyapunov functional
-    # 3. Neural operator acceleration for Hessian computation
-    pass
+    # High-level protocol:
+    # 1. Use Newton–Raphson iterations for local refinement in coupling space.
+    # 2. Monitor a Lyapunov functional to ensure the iterate remains inside
+    #    the global basin of attraction of the cosmic fixed point.
+    # 3. Optionally accelerate Hessian evaluations with a neural operator
+    #    surrogate, while maintaining certified error bounds.
+    #
+    # Pseudo-code sketch (not executable as-is):
+    #
+    #   lam, gam, mu = initial_guess
+    #   for n in range(max_iterations):
+    #       # Evaluate β-functions at current couplings (Eq. 1.13)
+    #       beta_lam, beta_gam, beta_mu = beta_functions(lam, gam, mu)
+    #
+    #       # Check convergence: all β's sufficiently small
+    #       if max(
+    #           abs(beta_lam),
+    #           abs(beta_gam),
+    #           abs(beta_mu),
+    #       ) < tolerance:
+    #           # Construct and return a CosmicFixedPoint instance
+    #           return CosmicFixedPoint(
+    #               lambda_star=lam,
+    #               gamma_star=gam,
+    #               mu_star=mu,
+    #               # error estimates would be attached here
+    #           )
+    #
+    #       # Assemble Jacobian J_ij = ∂β_i/∂g_j at current point
+    #       J = jacobian_beta(lam, gam, mu)
+    #
+    #       # Solve J · δg = -β for the Newton step δg = (δλ, δγ, δμ)
+    #       delta_lambda, delta_gamma, delta_mu = solve_linear_system(
+    #           J, (-beta_lam, -beta_gam, -beta_mu)
+    #       )
+    #
+    #       # Optional: apply line search / trust region if needed
+    #       # to maintain stability and stay in the basin of attraction.
+    #
+    #       lam += delta_lambda
+    #       gam += delta_gamma
+    #       mu += delta_mu
+    #
+    #   # If we reach this point, convergence was not achieved.
+    #   raise ConvergenceError(
+    #       "Cosmic fixed point search did not converge within max_iterations."
+    #   )
+    #
+    # In the production IRH codebase, this template should be implemented
+    # against the concrete BetaFunctions / RG flow types and return a
+    # fully populated CosmicFixedPoint object.
+    raise NotImplementedError(
+        "find_cosmic_fixed_point is an algorithmic protocol template. "
+        "Implement this Newton–Raphson fixed-point search using the "
+        "IRH v21.4 RG flow (Eqs. 1.12–1.14) in the main codebase."
+    )
 ```
 
 ---
