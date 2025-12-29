@@ -1,0 +1,33 @@
+# IRH v21.4 Tech Stack - Physics-ML Enhancement Libraries
+# Optional dependencies for advanced computational capabilities
+# Install with: pip install -r requirements-techstack.txt
+
+# Reference: .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md
+
+# JAX ecosystem (GPU-accelerated automatic differentiation)
+jax>=0.4.0
+jaxlib>=0.4.0
+jax-md>=0.2.0
+
+# Quantum simulation libraries
+qutip>=5.0.0
+# dynamiqs>=0.1.0  # Note: May not be on PyPI yet, install from source
+
+# Physics-ML frameworks
+# nvidia-modulus>=0.1.0  # Requires NVIDIA hardware and specific setup
+phiflow>=2.5.0
+
+# High-performance computing
+taichi>=1.6.0
+
+# GPU acceleration (alternative to JAX)
+cupy-cuda11x>=12.0.0  # Adjust version for your CUDA installation
+# For CUDA 12.x use: cupy-cuda12x
+# For CPU-only: skip CuPy
+
+# Additional scientific computing
+opt-einsum>=3.3.0  # Optimized tensor contractions
+networkx>=3.0      # Graph algorithms for Cymatic Resonance Networks
+
+# Development tools for tech stack
+hypothesis>=6.0.0  # Property-based testing
