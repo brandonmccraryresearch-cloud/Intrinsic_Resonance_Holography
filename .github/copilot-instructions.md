@@ -2000,11 +2000,35 @@ ti.init(arch=ti.gpu)
 
 @ti.kernel
 def substrate_dynamics(field: ti.template(), dt: float):
-    """Parallel update of substrate oscillators."""
-    for i, j, k in field:
-        # Quaternionic field update with QNCD interactions
-        pass
+    """Parallel update of substrate oscillators.
 
+    Notes
+    -----
+    This example assumes that ``field`` is a 3D Taichi field whose elements are
+    4-component vectors representing quaternion-valued amplitudes, e.g.::
+
+        field = ti.Vector.field(4, dtype=ti.f32, shape=(Nx, Ny, Nz))
+
+    The update below shows the expected Taichi pattern for in-place quaternionic
+    evolution with a simple local interaction term. In the full IRH implementation,
+    the QNCD-based interaction Hamiltonian replaces the toy dynamics used here.
+    """
+    for i, j, k in field:
+        # Current quaternion state q = (q0, q1, q2, q3)
+        q = field[i, j, k]
+
+        # Example: local "angular velocity" omega encoded as a fixed quaternion.
+        # In the full IRH cGFT/QNCD implementation, omega would be computed from
+        # neighborhood data and compression-based interactions on G_inf.
+        omega = ti.Vector([0.0, 1.0, 0.0, 0.0])
+
+        # Very simple toy dynamics: dq/dt = omega * q (component-wise here).
+        # This is *not* a full quaternion product; it is only meant to illustrate
+        # how to structure Taichi kernels that evolve quaternionic fields in time.
+        dq_dt = omega * q
+
+        # Explicit Euler step
+        field[i, j, k] = q + dt * dq_dt
 # Use for: Custom GPU kernels for substrate simulation
 # IRH Application:
 #   - Real-time substrate visualization
