@@ -24,6 +24,7 @@
 | [**Technical Reference Manual**](./docs/TECHNICAL_REFERENCE.md) | Exhaustive specifications for all modules, APIs, and implementations |
 | [**Continuation Guide**](./docs/CONTINUATION_GUIDE.md) | Next phases, priority tasks, and implementation roadmap |
 | [**Theoretical Correspondence Map**](./THEORETICAL_CORRESPONDENCE.md) | Bidirectional mapping between code and manuscript equations |
+| [**Tech Stack Integration Guide**](./TECH_STACK_INTEGRATION.md) | 🚀 Physics-ML library stack (JAX, QuTiP, SymPy, Taichi, etc.) - optional GPU/quantum enhancements |
 | [**Architecture Overview**](./docs/architectural_overview.md) | System design and ontological layer structure |
 | [**Desktop App Roadmap**](./docs/DEB_PACKAGE_ROADMAP.md) | Implementation plan for .deb desktop application |
 | [**Contributing Guidelines**](./CONTRIBUTING.md) | How to contribute to the project |
@@ -153,6 +154,26 @@ pip install -r requirements.txt
 # Verify installation
 python -c "from src.primitives.quaternions import Quaternion; print('✓ Installation successful')"
 ```
+
+### Optional: Physics-ML Enhancement Libraries
+
+Install the complete tech stack for GPU acceleration, quantum simulation, and ML surrogates:
+
+```bash
+# Install all optional Physics-ML libraries
+pip install -r requirements-techstack.txt
+
+# Or install selectively:
+pip install jax jaxlib jax-md  # GPU acceleration & molecular dynamics
+pip install qutip              # Quantum simulation
+pip install taichi             # High-performance computing
+pip install phiflow            # Differentiable physics
+
+# Check what's available
+python -c "from src.techstack import get_tech_stack_status; print(get_tech_stack_status())"
+```
+
+See [`TECH_STACK_INTEGRATION.md`](./TECH_STACK_INTEGRATION.md) for complete tech stack documentation.
 
 ### Desktop Application (Linux)
 
