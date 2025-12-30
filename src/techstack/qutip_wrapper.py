@@ -48,7 +48,11 @@ class QuantumState:
         ----------
         n_levels : int
             Number of quantum levels (dimension of Hilbert space).
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         self.n_levels = n_levels
         self.available = QUTIP_AVAILABLE
     
@@ -65,7 +69,11 @@ class QuantumState:
         -------
         Qobj or None
             QuTiP quantum object or None if QuTiP unavailable.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -90,7 +98,11 @@ class QuantumState:
         -------
         Qobj or None
             Superposition state or None if QuTiP unavailable.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -123,7 +135,11 @@ class QuantumState:
         -------
         Qobj or None
             Evolved state or None if QuTiP unavailable.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -182,7 +198,11 @@ class VortexWavePattern:
         ----------
         topological_complexity : int
             K_f value (1 for electron, ~207 for muon, ~3477 for tau).
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         self.K_f = topological_complexity
         self.available = QUTIP_AVAILABLE
     

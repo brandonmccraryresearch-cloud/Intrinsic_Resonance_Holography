@@ -59,6 +59,10 @@ class GPUArray:
             Input data.
         backend : GPUBackendType, optional
             Force specific backend. If None, auto-select best available.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
         """
         if backend is None:
             # Auto-select best backend
@@ -87,7 +91,13 @@ class GPUArray:
         return self._data
     
     def to_numpy(self) -> np.ndarray:
-        """Convert to NumPy array."""
+        """
+        Convert to NumPy array.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+        """
         if self.backend == GPUBackendType.JAX:
             return np.array(self._data)
         elif self.backend == GPUBackendType.CUPY:
@@ -97,7 +107,13 @@ class GPUArray:
     
     @classmethod
     def zeros(cls, shape: tuple, backend: Optional[GPUBackendType] = None):
-        """Create array of zeros."""
+        """
+        Create array of zeros.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+        """
         if backend is None:
             if JAX_AVAILABLE:
                 backend = GPUBackendType.JAX
@@ -118,7 +134,13 @@ class GPUArray:
     
     @classmethod
     def ones(cls, shape: tuple, backend: Optional[GPUBackendType] = None):
-        """Create array of ones."""
+        """
+        Create array of ones.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+        """
         if backend is None:
             if JAX_AVAILABLE:
                 backend = GPUBackendType.JAX
@@ -163,6 +185,10 @@ class GPUBackend:
         ----------
         prefer : GPUBackendType, optional
             Preferred backend. If None or unavailable, auto-select.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
         """
         if prefer == GPUBackendType.JAX and JAX_AVAILABLE:
             self.backend_type = GPUBackendType.JAX
@@ -193,7 +219,13 @@ class GPUBackend:
         return self.backend_type in [GPUBackendType.JAX, GPUBackendType.CUPY]
     
     def zeros(self, shape: tuple, dtype=None) -> np.ndarray:
-        """Create array of zeros."""
+        """
+        Create array of zeros.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+        """
         return self._module.zeros(shape, dtype=dtype)
     
     def ones(self, shape: tuple, dtype=None) -> np.ndarray:
@@ -248,7 +280,13 @@ _default_backend = None
 
 
 def get_default_backend() -> GPUBackend:
-    """Get global default GPU backend."""
+    """
+    Get global default GPU backend.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+    """
     global _default_backend
     if _default_backend is None:
         _default_backend = GPUBackend()
@@ -256,13 +294,25 @@ def get_default_backend() -> GPUBackend:
 
 
 def set_default_backend(backend: GPUBackend) -> None:
-    """Set global default GPU backend."""
+    """
+    Set global default GPU backend.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+    """
     global _default_backend
     _default_backend = backend
 
 
 def get_available_backends() -> list:
-    """Get list of available backends."""
+    """
+    Get list of available backends.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+    """
     backends = [GPUBackendType.NUMPY]
     if JAX_AVAILABLE:
         backends.append(GPUBackendType.JAX)
@@ -272,5 +322,11 @@ def get_available_backends() -> list:
 
 
 def is_gpu_available() -> bool:
-    """Check if any GPU backend is available."""
+    """
+    Check if any GPU backend is available.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - GPU backend abstraction
+    """
     return JAX_AVAILABLE or CUPY_AVAILABLE

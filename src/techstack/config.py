@@ -81,11 +81,23 @@ class TechStackConfig:
     taichi_arch: Optional[str] = None  # "cpu", "cuda", "vulkan", etc.
     
     def enable_gpu(self) -> bool:
-        """Check if GPU acceleration is enabled."""
+        """
+        Check if GPU acceleration is enabled.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+        """
         return self.gpu_backend != GPUBackend.NONE
     
     def to_dict(self) -> dict:
-        """Convert configuration to dictionary."""
+        """
+        Convert configuration to dictionary.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+        """
         return {
             "gpu_backend": self.gpu_backend.value,
             "quantum_backend": self.quantum_backend.value,
@@ -101,12 +113,24 @@ class TechStackConfig:
     
     @classmethod
     def default(cls) -> "TechStackConfig":
-        """Get default configuration (CPU-only, fallback enabled)."""
+        """
+        Get default configuration (CPU-only, fallback enabled).
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+        """
         return cls()
     
     @classmethod
     def gpu_optimized(cls) -> "TechStackConfig":
-        """Get GPU-optimized configuration."""
+        """
+        Get GPU-optimized configuration.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+        """
         return cls(
             gpu_backend=GPUBackend.JAX,
             quantum_backend=QuantumBackend.DYNAMIQS,
@@ -117,7 +141,13 @@ class TechStackConfig:
     
     @classmethod
     def symbolic_analysis(cls) -> "TechStackConfig":
-        """Get configuration optimized for symbolic analysis."""
+        """
+        Get configuration optimized for symbolic analysis.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+        """
         return cls(
             enable_symbolic=True,
             quantum_backend=QuantumBackend.QUTIP,
@@ -126,7 +156,13 @@ class TechStackConfig:
     
     @classmethod
     def ml_surrogate(cls) -> "TechStackConfig":
-        """Get configuration optimized for ML surrogate training."""
+        """
+        Get configuration optimized for ML surrogate training.
+        
+        References
+        ----------
+        .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+        """
         return cls(
             gpu_backend=GPUBackend.JAX,
             enable_modulus=True,
@@ -140,12 +176,24 @@ _global_config = TechStackConfig.default()
 
 
 def get_config() -> TechStackConfig:
-    """Get global tech stack configuration."""
+    """
+    Get global tech stack configuration.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+    """
     return _global_config
 
 
 def set_config(config: TechStackConfig) -> None:
-    """Set global tech stack configuration."""
+    """
+    Set global tech stack configuration.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
+    """
     global _global_config
     _global_config = config
 
@@ -158,6 +206,10 @@ def configure_jax(config: TechStackConfig) -> None:
     ----------
     config : TechStackConfig
         Configuration to apply.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
     """
     try:
         import jax
@@ -183,6 +235,10 @@ def configure_taichi(config: TechStackConfig) -> None:
     ----------
     config : TechStackConfig
         Configuration to apply.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
     """
     try:
         import taichi as ti
@@ -216,6 +272,10 @@ def apply_config(config: TechStackConfig) -> None:
     ----------
     config : TechStackConfig
         Configuration to apply globally.
+    
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Configuration system
     """
     set_config(config)
     configure_jax(config)

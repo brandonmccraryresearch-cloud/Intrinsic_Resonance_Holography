@@ -42,7 +42,11 @@ class SymbolicBetaFunctions:
     """
     
     def __init__(self):
-        """Initialize symbolic beta functions."""
+        """Initialize symbolic beta functions.
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         self.available = SYMPY_AVAILABLE
         
         if self.available:
@@ -59,7 +63,11 @@ class SymbolicBetaFunctions:
         -------
         sympy expression or None
             β_λ = -2λ̃ + (9/8π²)λ̃²
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -73,7 +81,11 @@ class SymbolicBetaFunctions:
         -------
         sympy expression or None
             β_γ = (3/4π²)λ̃γ̃
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -87,7 +99,11 @@ class SymbolicBetaFunctions:
         -------
         sympy expression or None
             β_μ = 2μ̃ + (1/2π²)λ̃μ̃
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -113,7 +129,11 @@ class SymbolicBetaFunctions:
         dict or None
             Dictionary with symbolic one-loop β_λ=0 solutions and associated
             metadata, or None if SymPy is unavailable.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -161,7 +181,11 @@ class QuaternionicAlgebra:
     """
     
     def __init__(self):
-        """Initialize quaternionic algebra."""
+        """Initialize quaternionic algebra.
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         self.available = SYMPY_AVAILABLE
     
     def create(self, w: float, x: float, y: float, z: float) -> Optional[object]:
@@ -177,7 +201,11 @@ class QuaternionicAlgebra:
         -------
         Quaternion or None
             SymPy quaternion object.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -196,7 +224,11 @@ class QuaternionicAlgebra:
         -------
         Quaternion or None
             Product q1 * q2.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available or q1 is None or q2 is None:
             return None
         
@@ -215,7 +247,11 @@ class QuaternionicAlgebra:
         -------
         Quaternion or None
             Conjugate q̄ = w - xi - yj - zk.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available or q is None:
             return None
         
@@ -234,7 +270,11 @@ class QuaternionicAlgebra:
         -------
         float or None
             Norm |q| = √(w² + x² + y² + z²).
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available or q is None:
             return None
         
@@ -254,7 +294,11 @@ class SymbolicDerivations:
     """
     
     def __init__(self):
-        """Initialize symbolic derivations helper."""
+        """Initialize symbolic derivations helper.
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         self.available = SYMPY_AVAILABLE
     
     def verify_commutator(
@@ -274,7 +318,11 @@ class SymbolicDerivations:
         -------
         sympy expression or None
             [A, B] = AB - BA.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available:
             return None
         
@@ -298,7 +346,11 @@ class SymbolicDerivations:
         -------
         str or None
             LaTeX string.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if not self.available or expr is None:
             return None
         

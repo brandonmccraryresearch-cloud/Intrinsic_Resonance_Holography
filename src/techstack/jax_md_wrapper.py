@@ -60,7 +60,11 @@ class SubstrateDynamics:
             Size of simulation box.
         temperature : float
             Temperature for thermal fluctuations.
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         self.n_nodes = n_nodes
         self.box_size = box_size
         self.temperature = temperature
@@ -86,7 +90,11 @@ class SubstrateDynamics:
         -------
         np.ndarray
             Initial positions shape (n_nodes, 3).
-        """
+        
+    References
+    ----------
+    .github/GITHUB_COPILOT_AGENT_IRH_v21.4.md - Tech stack integration
+    """
         if self.available:
             key = jax.random.PRNGKey(seed)
             positions = jax.random.uniform(
