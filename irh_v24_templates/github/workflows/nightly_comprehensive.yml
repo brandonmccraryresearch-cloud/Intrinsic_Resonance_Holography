@@ -1,0 +1,134 @@
+# IRH v24.0 Nightly Comprehensive Validation
+# Extensive testing including long-running convergence studies
+
+name: Nightly Comprehensive
+
+on:
+  schedule:
+    # Run at 2 AM UTC daily
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  comprehensive-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov pytest-timeout
+    
+    - name: Run all unit tests with coverage
+      run: |
+        pytest tests/unit/ -v --cov=src --cov-report=html --cov-report=term
+    
+    - name: Run integration tests
+      run: |
+        pytest tests/integration/ -v --timeout=300
+    
+    - name: Run convergence studies
+      run: |
+        pytest tests/convergence/ -v --timeout=600
+    
+    - name: Run theoretical invariant tests
+      run: |
+        pytest tests/theoretical_invariants/ -v
+    
+    - name: Verify all manuscript equations
+      run: |
+        python scripts/audit_equation_implementations.py --strict
+    
+    - name: Check numerical precision
+      run: |
+        python scripts/verify_numerical_precision.py
+    
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: htmlcov/
+    
+    - name: Generate comprehensive report
+      if: always()
+      run: |
+        python scripts/generate_validation_report.py --output validation_report.md
+    
+    - name: Upload validation report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: validation-report
+        path: validation_report.md
+
+  performance-benchmarks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest-benchmark
+    
+    - name: Run performance benchmarks
+      run: |
+        pytest tests/benchmarks/ -v --benchmark-only
+    
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v4
+      with:
+        name: benchmark-results
+        path: .benchmarks/
+
+  theoretical-consistency:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install sympy mpmath
+    
+    - name: Verify dimensional consistency
+      run: |
+        python scripts/check_dimensional_consistency.py
+    
+    - name: Verify mathematical identities
+      run: |
+        python scripts/verify_mathematical_identities.py
+    
+    - name: Check for circular reasoning
+      run: |
+        python scripts/detect_circular_reasoning.py
+    
+    - name: Validate derivation chains
+      run: |
+        python scripts/validate_derivation_chains.py
